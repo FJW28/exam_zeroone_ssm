@@ -34,12 +34,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean login(User user) {
-        boolean result=false;
-        User user1=userDao.findUser(user);
-        if(user1!=null){
-            result=true;
-        }
-        return result;
+    public User login(User user) {
+
+        return userDao.findUser(user);
     }
+
 }

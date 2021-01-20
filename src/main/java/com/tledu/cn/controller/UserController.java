@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 @Controller
@@ -39,12 +40,14 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public HashMap<String,Object> login(@RequestBody  User user){
+    public HashMap<String,Object> login(@RequestBody  User user, HttpServletRequest request){
+        System.out.println(user);
         HashMap<String,Object> result=new HashMap<>();
-        boolean flag =userService.login(user);
-        if(flag){
+        User user1 =userService.login(user);
+        if(user1!=null){
+            request.getSession().setAttribute("user",user1);
             result.put("mark","1");
-        }else {
+        }else  {
             result.put("mark","0");
         }
         return result;

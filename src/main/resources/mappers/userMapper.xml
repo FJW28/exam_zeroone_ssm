@@ -9,8 +9,8 @@
         insert into user values(#{u_id},#{u_phone},#{u_password},#{u_username},#{u_status},#{u_isdelete},#{u_createTime})
     </insert>
 
-    <select id="findUser" parameterType="User" resultType="com.tledu.cn.pojo.User">
-        select * from user where u_phone=#{u_phone} and u_password=#{u_password}
+    <select id="findUser" parameterType="User" resultType="User">
+       select * from user where u_phone =#{u_phone} AND u_password =#{u_password};
     </select>
 
 

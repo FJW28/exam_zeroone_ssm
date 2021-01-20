@@ -75,7 +75,7 @@
     </bean>
     <!-- Mybatis setting配置-->
     <bean id="setting" class="org.apache.ibatis.session.Configuration">
-        <property name="mapUnderscoreToCamelCase" value="true"/>
+        <!--<property name="mapUnderscoreToCamelCase" value="true"/>-->
     </bean>
     <!--  Spring 接管sqlSessionFactory  -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
