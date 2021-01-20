@@ -22,7 +22,7 @@ public class UserController {
      * @param
      * @return
      */
-   /* @RequestMapping("/regist")
+    @RequestMapping("/regist")
     @ResponseBody
     public HashMap<String,Object> regist(@RequestBody  User user){
         HashMap<String,Object> result=new HashMap<>();
@@ -33,25 +33,8 @@ public class UserController {
             result.put("mark","0");
         }
         return result;
-    }*/
-
-    @RequestMapping("/regist")
-    @ResponseBody
-    public HashMap<String,Object> regist1(){
-        User user=new User();
-        user.setU_phone("15511360446");
-        user.setU_password("123456");
-        user.setU_username("FJW");
-        HashMap<String,Object> result=new HashMap<>();
-        boolean flag =userService.regist(user);
-        if(flag){
-            result.put("mark","1");
-        }else {
-            result.put("mark","0");
-        }
-        System.out.println(result);
-        return result;
     }
+
 
 
     @RequestMapping("/login")
