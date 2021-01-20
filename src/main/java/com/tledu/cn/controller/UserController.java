@@ -20,40 +20,43 @@ public class UserController {
     /**
      * 注册
      * json格式字符串
+     *
      * @param
      * @return
      */
     @RequestMapping("/regist")
     @ResponseBody
-    public HashMap<String,Object> regist(@RequestBody  User user){
-        HashMap<String,Object> result=new HashMap<>();
-        boolean flag =userService.regist(user);
-        if(flag){
-            result.put("mark","1");
-        }else {
-            result.put("mark","0");
+    public HashMap<String, Object> regist(@RequestBody User user) {
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag = userService.regist(user);
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
         }
         return result;
     }
 
 
-
+    /**
+     * 登录
+     *
+     * @param user
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
-    public HashMap<String,Object> login(@RequestBody  User user, HttpServletRequest request){
-        System.out.println(user);
-        HashMap<String,Object> result=new HashMap<>();
-        User user1 =userService.login(user);
-        if(user1!=null){
-            request.getSession().setAttribute("user",user1);
-            result.put("mark","1");
-        }else  {
-            result.put("mark","0");
+    public User login(@RequestBody User user) {
+        User user1 = null;
+        user1 = userService.login(user);
+        if (user1 != null) {
+            return user1;
         }
-        return result;
+        return user1;
+
     }
 
-
-
-
 }
+
+
+
