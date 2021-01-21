@@ -2,13 +2,13 @@ package com.tledu.cn.pojo;
 
 public class User {
 
-    private String u_id;
-    private String u_phone;
-    private String u_password;
-    private String u_username;
-    private int u_status;
-    private int u_isdelete;
-    private String u_createTime;
+    private String u_id;    //用户id
+    private String u_phone;     //用户手机号
+    private String u_password;  //用户密码
+    private String u_username;  //用户名
+    private int u_status;   //用户状态，0启用，1禁用
+    private int u_isdelete;     //账号是否被删除，0否1是
+    private String u_createTime;    //创建时间
 
     public String getU_id() {
         return u_id;

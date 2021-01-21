@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.QuestionBankDao">
+    <select id="findAllSingleChoice" resultType="com.tledu.cn.pojo.SingleChoice">
+        select * from singleChoice
+    </select>
+
+    <select id="findAllBriefAnswer" resultType="com.tledu.cn.pojo.BriefAnswer">
+        select * from briefAnswer
+    </select>
+
+    <insert id="addSingleChoice" parameterType="com.tledu.cn.pojo.SingleChoice">
+        insert into singleChoice values (#{s_id},#{s_type},#{s_content},#{s_a},#{s_b},#{s_c},#{s_d}
+        ,#{s_score},#{s_answer},#{s_classify},#{u_id},#{s_delete},#{s_createTime})
+    </insert>
+
+    <insert id="addBriefAnswer" parameterType="com.tledu.cn.pojo.BriefAnswer">
+        insert into briefAnswer values (#{b_id},#{b_type},#{b_content}
+        ,#{b_score},#{b_answer},#{b_classify},#{u_id},#{b_isdelete},#{b_createTime})
+    </insert>
+
+    <update id="deleteSingleChoice" parameterType="com.tledu.cn.pojo.SingleChoice">
+        update singleChoice set s_delete=#{s_delete} where s_id=#{s_id}
+    </update>
+
+    <update id="deleteBriefAnswer" parameterType="com.tledu.cn.pojo.SingleChoice">
+        update briefAnswer set b_isdelete=#{b_isdelete} where b_id=#{b_id}
+    </update>
+
+</mapper>
+    
