@@ -4,6 +4,7 @@ package com.tledu.cn.controller;
 import com.tledu.cn.pojo.QuestionBank;
 import com.tledu.cn.pojo.User;
 import com.tledu.cn.service.QuestionBankService;
+import com.tledu.cn.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class QuestionBankController {
@@ -21,9 +23,9 @@ public class QuestionBankController {
     @RequestMapping("/findAllQuestionBank")
     @ResponseBody
     //查询题库所有试题
-    public List<QuestionBank> findAllQuestionBank(@RequestBody User user){
-        System.out.println(user);
-        return questionBankService.findAllQuestionBank(user.getU_id());
+    public PageUtils findAllQuestionBank(@RequestBody Map<String, Object> params){
+        System.out.println(params);
+        return questionBankService.findAllQuestionBank(params);
     }
 
 

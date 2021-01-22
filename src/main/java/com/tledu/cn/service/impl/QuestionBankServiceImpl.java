@@ -1,15 +1,19 @@
 package com.tledu.cn.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.QuestionBankDao;
 
 import com.tledu.cn.pojo.QuestionBank;
 import com.tledu.cn.service.QuestionBankService;
 import com.tledu.cn.util.JDK8DateUtil;
+import com.tledu.cn.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -18,11 +22,15 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     //引入dao层
     private QuestionBankDao questionBankDao;
 
-    @Override
-    public List<QuestionBank> findAllQuestionBank(String u_id) {
-        return questionBankDao.findAllQuestionBank(u_id);
-    }
 
+    @Override
+    public PageUtils findAllQuestionBank(Map<String, Object> params) {
+        List<QuestionBank> allQuestionBank = questionBankDao.findAllQuestionBank(params.get("u_id").toString());
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<QuestionBank> pageInfo=new PageInfo<>(allQuestionBank);
+
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+    }
 
     @Override
     public boolean addSingleChoice(QuestionBank questionBank) {

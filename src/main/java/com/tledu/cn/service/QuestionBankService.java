@@ -2,8 +2,10 @@ package com.tledu.cn.service;
 
 
 import com.tledu.cn.pojo.QuestionBank;
+import com.tledu.cn.util.PageUtils;
 
 import java.util.List;
+import java.util.Map;
 
 public interface QuestionBankService {
 
@@ -12,7 +14,7 @@ public interface QuestionBankService {
      * 查询所有试题
      * @return
      */
-    public List<QuestionBank> findAllQuestionBank(String u_id);
+    public PageUtils findAllQuestionBank(Map<String,Object> params);
 
 
 
