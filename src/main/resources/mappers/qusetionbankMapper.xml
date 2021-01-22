@@ -18,8 +18,16 @@
        insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isdelete},#{q_createTime})
     </insert>
 
-    <update id="deleteQuestionBank" parameterType="com.tledu.cn.pojo.QuestionBank">
-        update questionBank set q_isdelete=1 where q_id=#{q_id}
+    <update id="deleteQuestionBank"  parameterType="string" >
+        update questionBank set q_isdelete=1 where q_id=#{value}
+    </update>
+
+    <update id="updateSingleChoice"  parameterType="com.tledu.cn.pojo.QuestionBank" >
+        update questionBank set q_content=#{q_content},q_a=#{q_a},q_b=#{q_b},q_c=#{q_c},q_d=#{q_d},q_answer=#{q_answer},q_score=#{q_score},q_classify=#{q_classify} where q_id=#{q_id} and u_id=#{u_id}
+    </update>
+
+    <update id="updateBriefAnswer"  parameterType="com.tledu.cn.pojo.QuestionBank" >
+        update questionBank set q_content=#{q_content},q_a=#{q_a},q_b=#{q_b},q_c=#{q_c},q_d=#{q_d},q_answer=#{q_answer},q_score=#{q_score},q_classify=#{q_classify} where q_id=#{q_id} and u_id=#{u_id}
     </update>
 
 

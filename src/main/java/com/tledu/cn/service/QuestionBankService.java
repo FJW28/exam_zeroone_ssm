@@ -38,4 +38,8 @@ public interface QuestionBankService {
      * @return
      */
     public boolean deleteQuestionBank(String id);
+    
+    public boolean updateSingleChoice(QuestionBank questionBank);
+
+    public boolean updateBriefAnswer(QuestionBank questionBank);
 }

@@ -18,17 +18,17 @@ import java.util.UUID;
 
 @Service
 public class QuestionBankServiceImpl implements QuestionBankService {
-    @Autowired
     //引入dao层
+    @Autowired
     private QuestionBankDao questionBankDao;
 
 
     @Override
     public PageUtils findAllQuestionBank(Map<String, Object> params) {
         List<QuestionBank> allQuestionBank = questionBankDao.findAllQuestionBank(params.get("u_id").toString());
+        //分页核心代码
         PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
         PageInfo<QuestionBank> pageInfo=new PageInfo<>(allQuestionBank);
-
         return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
     }
 
@@ -64,9 +64,37 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     }
 
     @Override
-    public boolean deleteQuestionBank(String id) {
-        questionBankDao.deleteQuestionBank(id);
-        return false;
+    public boolean deleteQuestionBank(String q_id) {
+        boolean result=false;
+
+        int i = questionBankDao.deleteQuestionBank(q_id);
+        if(i>0){
+            result=true;
+        }
+        return result;
+
+    }
+
+    @Override
+    public boolean updateSingleChoice(QuestionBank questionBank) {
+        boolean result=false;
+
+        int i=questionBankDao.updateSingleChoice(questionBank);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean updateBriefAnswer(QuestionBank questionBank) {
+        boolean result=false;
+
+        int i=questionBankDao.updateBriefAnswer(questionBank);
+        if(i>0){
+            result=true;
+        }
+        return result;
     }
 
 

@@ -39,4 +39,7 @@ public interface QuestionBankDao {
     public int deleteQuestionBank(String id);
 
 
+    public int updateSingleChoice(QuestionBank questionBank);
+
+    public int updateBriefAnswer(QuestionBank questionBank);
 }

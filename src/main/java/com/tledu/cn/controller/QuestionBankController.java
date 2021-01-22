@@ -24,7 +24,7 @@ public class QuestionBankController {
     @ResponseBody
     //查询题库所有试题
     public PageUtils findAllQuestionBank(@RequestBody Map<String, Object> params){
-        System.out.println(params);
+       // System.out.println(params);
         return questionBankService.findAllQuestionBank(params);
     }
 
@@ -60,10 +60,39 @@ public class QuestionBankController {
 
     @RequestMapping("/deleteTopic")
     @ResponseBody
-    public HashMap<String, Object> deleteTopic(String id) {
-        System.out.println(id);
+    public HashMap<String, Object> deleteTopic(String q_id) {
+        System.out.println(q_id);
         HashMap<String, Object> result = new HashMap<>();
-        boolean flag = questionBankService.deleteQuestionBank(id);
+        boolean flag = questionBankService.deleteQuestionBank(q_id);
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
+        }
+        return result;
+    }
+
+    @RequestMapping("/updateSingleChoice")
+    @ResponseBody
+    public HashMap<String, Object> updateSingleChoice(@RequestBody QuestionBank questionBank) {
+        System.out.println(questionBank);
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag = questionBankService.updateSingleChoice(questionBank);
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
+        }
+        return result;
+    }
+
+
+    @RequestMapping("/updateBriefAnswer")
+    @ResponseBody
+    public HashMap<String, Object> updateBriefAnswer(@RequestBody QuestionBank questionBank) {
+        System.out.println(questionBank);
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag = questionBankService.updateBriefAnswer(questionBank);
         if (flag) {
             result.put("mark", "1");
         } else {
