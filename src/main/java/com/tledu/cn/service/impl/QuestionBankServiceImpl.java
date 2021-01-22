@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.QuestionBankDao;
 
+import com.tledu.cn.pojo.FuzzySearch;
 import com.tledu.cn.pojo.QuestionBank;
 import com.tledu.cn.service.QuestionBankService;
 import com.tledu.cn.util.JDK8DateUtil;
@@ -95,6 +96,40 @@ public class QuestionBankServiceImpl implements QuestionBankService {
             result=true;
         }
         return result;
+    }
+
+    @Override
+    public PageUtils findAllSingleChoice(Map<String,Object> params) {
+        List<QuestionBank> questionBankList=questionBankDao.findAllSingleChoice(params.get("u_id").toString());
+      //  System.out.println(questionBankList);
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<QuestionBank> pageInfo=new PageInfo<>(questionBankList);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+
+
+    }
+
+    @Override
+    public PageUtils findAllBriefAnswer(Map<String,Object> params) {
+        List<QuestionBank> questionBankList=questionBankDao.findAllBriefAnswer(params.get("u_id").toString());
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<QuestionBank> pageInfo=new PageInfo<>(questionBankList);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+
+    }
+
+    @Override
+    public PageUtils fuzzySearch(Map<String, Object> params) {
+        FuzzySearch fuzzySearch=new FuzzySearch();
+        fuzzySearch.setU_id(params.get("u_id").toString());
+        fuzzySearch.setQ_content(params.get("q_content").toString());
+        List<QuestionBank> questionBankList = questionBankDao.fuzzySearch(fuzzySearch);
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<QuestionBank> pageInfo=new PageInfo<>(questionBankList);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
     }
 
 

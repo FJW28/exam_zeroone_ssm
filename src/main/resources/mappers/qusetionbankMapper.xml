@@ -30,6 +30,18 @@
         update questionBank set q_content=#{q_content},q_a=#{q_a},q_b=#{q_b},q_c=#{q_c},q_d=#{q_d},q_answer=#{q_answer},q_score=#{q_score},q_classify=#{q_classify} where q_id=#{q_id} and u_id=#{u_id}
     </update>
 
+    <select id="findAllSingleChoice" parameterType="string" resultType="com.tledu.cn.pojo.QuestionBank">
+        select * from questionBank where q_type="单选题" and q_isdelete=0 and u_id=#{value}
+    </select>
+
+    <select id="findAllBriefAnswer" parameterType="string" resultType="com.tledu.cn.pojo.QuestionBank">
+        select * from questionBank where q_type="简答题" and q_isdelete=0 and u_id=#{value}
+    </select>
+
+    <select id="fuzzySearch" parameterType="com.tledu.cn.pojo.FuzzySearch" resultType="com.tledu.cn.pojo.QuestionBank">
+        select * from questionBank where q_content like concat('%',#{q_content},'%') and u_id=#{u_id}
+    </select>
+
 
 
 </mapper>

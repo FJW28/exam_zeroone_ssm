@@ -1,6 +1,7 @@
 package com.tledu.cn.dao;
 
 
+import com.tledu.cn.pojo.FuzzySearch;
 import com.tledu.cn.pojo.QuestionBank;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -38,8 +39,35 @@ public interface QuestionBankDao {
      */
     public int deleteQuestionBank(String id);
 
-
+    /**
+     * 修改单选题
+     * @param questionBank
+     * @return
+     */
     public int updateSingleChoice(QuestionBank questionBank);
 
+    /**
+     * 修改简答题
+     * @param questionBank
+     * @return
+     */
     public int updateBriefAnswer(QuestionBank questionBank);
+
+    /**
+     * 查询所有单选题
+     * @param u_id
+     * @return
+     */
+    public List<QuestionBank> findAllSingleChoice(String u_id);
+
+    /**
+     * 查询所有简答题
+     * @param u_id
+     * @return
+     */
+    public List<QuestionBank> findAllBriefAnswer(String u_id);
+
+
+    public List<QuestionBank> fuzzySearch(FuzzySearch fuzzySearch);
+
 }

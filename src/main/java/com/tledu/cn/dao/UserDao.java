@@ -13,5 +13,10 @@ public interface UserDao {
      */
     public int regist(User user);
 
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
     public User findUser(User user);
 }

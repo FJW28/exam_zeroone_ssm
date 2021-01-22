@@ -38,8 +38,40 @@ public interface QuestionBankService {
      * @return
      */
     public boolean deleteQuestionBank(String id);
-    
+
+    /**
+     * 修改单选题
+     * @param questionBank
+     * @return
+     */
     public boolean updateSingleChoice(QuestionBank questionBank);
 
+    /**
+     * 修改简答题
+     * @param questionBank
+     * @return
+     */
     public boolean updateBriefAnswer(QuestionBank questionBank);
+
+    /**
+     * 查询全部单选题
+     * @param params<String,Object> params
+     * @return
+     */
+    public PageUtils findAllSingleChoice(Map<String,Object> params);
+
+    /**
+     * 查询全部简答题
+     * @param params<String,Object> params
+     * @return
+     */
+    public PageUtils findAllBriefAnswer(Map<String,Object> params);
+
+
+    /**
+     * 模糊查询
+     * @param params
+     * @return
+     */
+    public PageUtils fuzzySearch(Map<String, Object> params);
 }
