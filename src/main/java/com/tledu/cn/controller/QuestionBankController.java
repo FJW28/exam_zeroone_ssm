@@ -1,15 +1,13 @@
 package com.tledu.cn.controller;
 
-import com.tledu.cn.pojo.BriefAnswer;
+
 import com.tledu.cn.pojo.QuestionBank;
-import com.tledu.cn.pojo.SingleChoice;
 import com.tledu.cn.pojo.User;
 import com.tledu.cn.service.QuestionBankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -20,27 +18,22 @@ public class QuestionBankController {
     @Autowired
     private QuestionBankService questionBankService;
 
-    @RequestMapping("/findAllSingleChoice")
+    @RequestMapping("/findAllQuestionBank")
     @ResponseBody
     //查询题库所有试题
-    public List<SingleChoice> findAllSingleChoice(){
-
-        return questionBankService.findSingleChoice();
+    public List<QuestionBank> findAllQuestionBank(@RequestBody User user){
+        System.out.println(user);
+        return questionBankService.findAllQuestionBank(user.getU_id());
     }
 
-    @RequestMapping("/findAllBriefAnwser")
-    @ResponseBody
-    //查询题库所有试题
-    public List<BriefAnswer> findAllBriefAnwser(){
 
-        return questionBankService.findBriefAnwser();
-    }
 
     @RequestMapping("/addSingleChoice")
     @ResponseBody
-    public HashMap<String, Object> addSingleChoice(@RequestBody SingleChoice singleChoice) {
+    public HashMap<String, Object> addSingleChoice(@RequestBody QuestionBank questionBank) {
+        System.out.println(questionBank);
         HashMap<String, Object> result = new HashMap<>();
-        boolean flag = questionBankService.addSingleChoice(singleChoice);
+        boolean flag = questionBankService.addSingleChoice(questionBank);
         if (flag) {
             result.put("mark", "1");
         } else {
@@ -51,9 +44,9 @@ public class QuestionBankController {
 
     @RequestMapping("/addBriefAnswer")
     @ResponseBody
-    public HashMap<String, Object> addBriefAnswer(@RequestBody BriefAnswer briefAnswer) {
+    public HashMap<String, Object> addBriefAnswer(@RequestBody QuestionBank questionBank) {
         HashMap<String, Object> result = new HashMap<>();
-        boolean flag = questionBankService.addBriefAnswer(briefAnswer);
+        boolean flag = questionBankService.addBriefAnswer(questionBank);
         if (flag) {
             result.put("mark", "1");
         } else {
@@ -65,11 +58,10 @@ public class QuestionBankController {
 
     @RequestMapping("/deleteTopic")
     @ResponseBody
-    public HashMap<String, Object> deleteTopic(String type,String id) {
-        System.out.println(type);
+    public HashMap<String, Object> deleteTopic(String id) {
         System.out.println(id);
         HashMap<String, Object> result = new HashMap<>();
-        boolean flag = questionBankService.deleteTopic(type,id);
+        boolean flag = questionBankService.deleteQuestionBank(id);
         if (flag) {
             result.put("mark", "1");
         } else {
