@@ -22,7 +22,7 @@ public class TestPaperController {
     @ResponseBody
     //查询所有试卷
     public PageUtils findAllTestPaper(@RequestBody Map<String, Object> params) {
-        System.out.println(params);
+      // System.out.println(params);
         return testPaperService.findAllTestPaper(params);
     }
 
@@ -31,7 +31,7 @@ public class TestPaperController {
     //添加试卷
     public HashMap<String, Object> addTestPaper(@RequestBody TestPaper testPaper) {
 
-        System.out.println(testPaper);
+        //System.out.println(testPaper);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = testPaperService.addTestPaper(testPaper);
         if (flag) {
@@ -42,10 +42,11 @@ public class TestPaperController {
         return result;
     }
 
-    @RequestMapping("/delTestPaper")
+    @RequestMapping("/deleteTestPaper")
     @ResponseBody
     //删除试卷试卷
     public HashMap<String, Object> delTestPaper(String t_id){
+      //  System.out.println(t_id);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag=testPaperService.delTestPaper(t_id);
         if (flag) {
@@ -61,6 +62,7 @@ public class TestPaperController {
     @ResponseBody
     //修改试卷信息
     public HashMap<String, Object> updateTestPaper(@RequestBody TestPaper testPaper){
+        System.out.println(testPaper);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag=testPaperService.updateTestPaper(testPaper);
         if (flag) {

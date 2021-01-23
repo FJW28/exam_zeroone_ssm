@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tledu.cn.dao.TestPaperDao">
     <select id="findAllTestPaper"  parameterType="string" resultType="com.tledu.cn.pojo.TestPaper">
-        select * from testPaper where u_id=#{value}
+        select * from testPaper where u_id=#{value} and t_isdelete = 0
     </select>
 
     <insert id="addTestPaper" parameterType="com.tledu.cn.pojo.TestPaper">
@@ -18,7 +18,7 @@
 
     <update id="updateTestPaper" parameterType="com.tledu.cn.pojo.TestPaper">
         update testPaper set t_title=#{t_title},t_classify=#{t_classify},t_startTime=#{t_startTime},
-        t_endTime=#{t_endTime} where q_id=#{q_id}
+        t_endTime=#{t_endTime} where t_id=#{t_id}
     </update>
 
 </mapper>
