@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.QuestionBankDao;
 
-import com.tledu.cn.pojo.FuzzySearch;
+
 import com.tledu.cn.pojo.QuestionBank;
 import com.tledu.cn.service.QuestionBankService;
 import com.tledu.cn.util.JDK8DateUtil;
@@ -122,10 +122,10 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
     @Override
     public PageUtils fuzzySearch(Map<String, Object> params) {
-        FuzzySearch fuzzySearch=new FuzzySearch();
-        fuzzySearch.setU_id(params.get("u_id").toString());
-        fuzzySearch.setQ_content(params.get("q_content").toString());
-        List<QuestionBank> questionBankList = questionBankDao.fuzzySearch(fuzzySearch);
+        String q_content=params.get("q_content").toString();
+        String u_id=params.get("u_id").toString();
+        List<QuestionBank> questionBankList = questionBankDao.fuzzySearch(q_content,u_id);
+        System.out.println(questionBankList);
         //分页核心代码
         PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
         PageInfo<QuestionBank> pageInfo=new PageInfo<>(questionBankList);

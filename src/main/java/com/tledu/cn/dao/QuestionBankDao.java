@@ -1,9 +1,10 @@
 package com.tledu.cn.dao;
 
 
-import com.tledu.cn.pojo.FuzzySearch;
+
 import com.tledu.cn.pojo.QuestionBank;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -67,7 +68,12 @@ public interface QuestionBankDao {
      */
     public List<QuestionBank> findAllBriefAnswer(String u_id);
 
-
-    public List<QuestionBank> fuzzySearch(FuzzySearch fuzzySearch);
+    /**
+     * 模糊查询
+     * @param
+     * @return
+     */
+    //public List<QuestionBank> fuzzySearch(FuzzySearch fuzzySearch);
+    public List<QuestionBank> fuzzySearch(@Param("q_content") String q_content,@Param("u_id") String u_id );
 
 }

@@ -170,7 +170,7 @@ public class QuestionBankController {
     @RequestMapping("/fuzzySearch")
     @ResponseBody
     public PageUtils fuzzySearch(@RequestBody Map<String, Object> params) {
-        System.out.println(params);
+       // System.out.println(params);
         return questionBankService.fuzzySearch(params);
 
     }

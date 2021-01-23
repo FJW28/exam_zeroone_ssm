@@ -38,7 +38,7 @@
         select * from questionBank where q_type="简答题" and q_isdelete=0 and u_id=#{value}
     </select>
 
-    <select id="fuzzySearch" parameterType="com.tledu.cn.pojo.FuzzySearch" resultType="com.tledu.cn.pojo.QuestionBank">
+    <select id="fuzzySearch" resultType="com.tledu.cn.pojo.QuestionBank">
         select * from questionBank where q_content like concat('%',#{q_content},'%') and u_id=#{u_id}
     </select>
 
