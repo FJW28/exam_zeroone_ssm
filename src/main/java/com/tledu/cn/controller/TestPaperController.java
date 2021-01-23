@@ -22,7 +22,7 @@ public class TestPaperController {
     @ResponseBody
     //查询所有试卷
     public PageUtils findAllTestPaper(@RequestBody Map<String, Object> params) {
-        // System.out.println(params);
+        System.out.println(params);
         return testPaperService.findAllTestPaper(params);
     }
 
@@ -30,6 +30,8 @@ public class TestPaperController {
     @ResponseBody
     //添加试卷
     public HashMap<String, Object> regist(@RequestBody TestPaper testPaper) {
+
+        System.out.println(testPaper);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = testPaperService.addTestPaper(testPaper);
         if (flag) {

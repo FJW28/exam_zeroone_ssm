@@ -46,6 +46,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         if(i>0){
             result=true;
         }
-        return false;
+        return result;
     }
 }
