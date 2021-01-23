@@ -11,6 +11,15 @@
         insert into testPaper values (#{t_id},#{t_title},#{t_classify},#{t_status},#{t_isdelete},
         #{t_createTime},#{t_checkNum},#{t_url},#{t_startTime},#{t_endTime},#{u_id})
     </insert>
+    
+    <update id="delTestPaper" parameterType="string">
+        update testPaper set t_isdelete=1 where t_id=#{value}
+    </update>
+
+    <update id="updateTestPaper" parameterType="com.tledu.cn.pojo.TestPaper">
+        update testPaper set t_title=#{t_title},t_classify=#{t_classify},t_startTime=#{t_startTime},
+        t_endTime=#{t_endTime} where q_id=#{q_id}
+    </update>
 
 </mapper>
     

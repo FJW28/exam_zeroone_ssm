@@ -19,4 +19,18 @@ public interface TestPaperDao {
      * @return
      */
     public int addTestPaper(TestPaper testPaper);
+
+
+    /**
+     * 删除试卷
+     * @return
+     */
+    public int delTestPaper(String t_id);
+
+
+    /**
+     * 修改试卷信息
+     * @return
+     */
+    public int updateTestPaper(TestPaper testPaper);
 }

@@ -21,4 +21,9 @@ public interface TestPaperService {
      * @return
      */
     public boolean addTestPaper(TestPaper testPaper);
+
+    public boolean delTestPaper(String t_id);
+
+
+    public boolean updateTestPaper(TestPaper testPaper);
 }

@@ -29,11 +29,40 @@ public class TestPaperController {
     @RequestMapping("/addTestPaper")
     @ResponseBody
     //添加试卷
-    public HashMap<String, Object> regist(@RequestBody TestPaper testPaper) {
+    public HashMap<String, Object> addTestPaper(@RequestBody TestPaper testPaper) {
 
         System.out.println(testPaper);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = testPaperService.addTestPaper(testPaper);
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
+        }
+        return result;
+    }
+
+    @RequestMapping("/delTestPaper")
+    @ResponseBody
+    //删除试卷试卷
+    public HashMap<String, Object> delTestPaper(String t_id){
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag=testPaperService.delTestPaper(t_id);
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
+        }
+        return result;
+    }
+
+
+    @RequestMapping("/updateTestPaper")
+    @ResponseBody
+    //修改试卷信息
+    public HashMap<String, Object> updateTestPaper(@RequestBody TestPaper testPaper){
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag=testPaperService.updateTestPaper(testPaper);
         if (flag) {
             result.put("mark", "1");
         } else {

@@ -48,4 +48,24 @@ public class TestPaperServiceImpl implements TestPaperService {
         }
         return result;
     }
+
+    @Override
+    public boolean delTestPaper(String t_id) {
+        boolean result = false;
+        int i = testPaperDao.delTestPaper(t_id);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean updateTestPaper(TestPaper testPaper) {
+        boolean result = false;
+        int i = testPaperDao.updateTestPaper(testPaper);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
 }
