@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.TestPaperDao">
+    <select id="findAllTestPaper"  parameterType="string" resultType="com.tledu.cn.pojo.TestPaper">
+        select * from testPaper where u_id=#{value}
+    </select>
+
+    <insert id="addTestPaper" parameterType="com.tledu.cn.pojo.TestPaper">
+        insert into testPaper values (#{t_id},#{t_title},#{t_classify},#{t_status},#{t_isdelete},
+        #{t_createTime},#{t_checkNum},#{t_url},#{t_startTime},#{t_endTime},#{u_id})
+    </insert>
+
+</mapper>
+    
