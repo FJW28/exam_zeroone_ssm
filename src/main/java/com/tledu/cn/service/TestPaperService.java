@@ -42,6 +42,6 @@ public interface TestPaperService {
      * @param q_id
      * @return
      */
-    public boolean addTopicToTestPaper(String t_id, String q_id,String u_id);
+    public boolean addTopicToTestPaper(String t_id, String q_id);
 
 }

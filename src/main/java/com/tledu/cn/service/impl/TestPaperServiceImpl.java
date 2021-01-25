@@ -74,7 +74,7 @@ public class TestPaperServiceImpl implements TestPaperService {
     }
 
     @Override
-    public boolean addTopicToTestPaper(String t_id, String q_id,String u_id) {
+    public boolean addTopicToTestPaper(String t_id, String q_id) {
         boolean result=false;
         QuestionBank topic = questionBankDao.findTopicByQid(q_id);
         TestQuestionBank testQuestionBank=new TestQuestionBank();
@@ -90,7 +90,7 @@ public class TestPaperServiceImpl implements TestPaperService {
         testQuestionBank.setTq_classify(topic.getQ_classify());
         testQuestionBank.setTq_isdelete(0);
         testQuestionBank.setTq_score(topic.getQ_score());
-        testQuestionBank.setU_id(u_id);
+        testQuestionBank.setU_id(topic.getU_id());
         LocalDateTime now = LocalDateTime.now();
         String dateTime2String = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
         testQuestionBank.setTq_createTime(dateTime2String);
