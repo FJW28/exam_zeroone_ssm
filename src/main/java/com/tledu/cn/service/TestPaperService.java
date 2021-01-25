@@ -1,8 +1,10 @@
 package com.tledu.cn.service;
 
 import com.tledu.cn.pojo.TestPaper;
+
 import com.tledu.cn.util.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 public interface TestPaperService {
@@ -44,4 +46,36 @@ public interface TestPaperService {
      */
     public boolean addTopicToTestPaper(String t_id, String q_id);
 
+    /**
+     * 批量添加试题
+     * @return
+     */
+    public boolean addTopicToTestPaperBybach(List<String> idList,String t_id);
+
+
+    /**
+     * 查询该试卷下的所有试题
+     * @param params
+     * @return
+     */
+    public PageUtils findAllTestQuestionBank(Map<String,Object> params);
+
+
+    /**
+     *
+     * 开启试卷
+     * @param t_id
+     * @return
+     */
+    public boolean openTestPaper(String t_id);
+
+    /**
+     * 从试卷中删除试题
+     * @param tq_id
+     * @return
+     */
+    public boolean deleteTopicFromTestPaper(String tq_id);
+
+
+    public boolean deleteTopicFromTestPaperByBach(List<String> idList1);
 }

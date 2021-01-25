@@ -18,6 +18,14 @@ public interface QuestionBankDao {
      */
     public List<QuestionBank> findAllQuestionBank(String u_id);
 
+
+    /**
+     * 查询题库所有试题 是否添加到试卷中
+     * @param u_id
+     * @return
+     */
+    public List<QuestionBank> findAllQuestionBank1(String u_id);
+
     /**
      * 根据q_id查询试题
      * @param q_id
@@ -88,4 +96,22 @@ public interface QuestionBankDao {
      * @return
      */
     public int batchDelete(List<String> idList);
+
+    /**
+     * 根据idList查询
+     * @param idList
+     * @return
+     */
+    public List<QuestionBank> findTopicByQidList(List<String> idList);
+
+
+    /**
+     * 修改试题的添加状态
+     * @param q_id
+     * @return
+     */
+    public int updateAddStatus(String q_id);
+
+
+    public int updateAddStatusByIdList(List<String> idList);
 }

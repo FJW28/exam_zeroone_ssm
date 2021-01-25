@@ -34,6 +34,16 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     }
 
     @Override
+    public PageUtils findAllQuestionBank1(Map<String, Object> params) {
+        List<QuestionBank> allQuestionBank = questionBankDao.findAllQuestionBank1(params.get("u_id").toString());
+        System.out.println(allQuestionBank);
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<QuestionBank> pageInfo=new PageInfo<>(allQuestionBank);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+    }
+
+    @Override
     public boolean addSingleChoice(QuestionBank questionBank) {
         boolean result=false;
         questionBank.setQ_id(UUID.randomUUID().toString());
@@ -141,6 +151,8 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         }
         return result;
     }
+
+
 
 
 }

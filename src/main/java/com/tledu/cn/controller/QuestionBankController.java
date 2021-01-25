@@ -33,6 +33,17 @@ public class QuestionBankController {
     }
 
 
+    @RequestMapping("/findAllQuestionBank1")
+    @ResponseBody
+    //查询题库所有试题 是否添加到试卷中
+    public PageUtils findAllQuestionBank1(@RequestBody Map<String, Object> params) {
+       // System.out.println(params);
+        return questionBankService.findAllQuestionBank1(params);
+    }
+
+
+
+
     /**
      * 添加单选题
      *

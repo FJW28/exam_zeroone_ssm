@@ -17,6 +17,8 @@ public interface QuestionBankService {
     public PageUtils findAllQuestionBank(Map<String,Object> params);
 
 
+    public PageUtils findAllQuestionBank1(Map<String, Object> params);
+
 
     /**
      * 添加选择题
@@ -81,4 +83,6 @@ public interface QuestionBankService {
      * @return
      */
     public boolean batchDelete(List<String> idList);
+
+
 }

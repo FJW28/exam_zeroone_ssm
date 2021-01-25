@@ -25,5 +25,31 @@
         insert into testQuestionBank values(#{tq_id},#{tq_type},#{tq_content},#{tq_a},#{tq_b},#{tq_c},#{tq_d},#{tq_score},#{tq_answer},#{tq_classify},#{u_id},#{tq_isdelete},#{tq_createTime},#{t_id})
     </insert>
 
+    <select id="findAllTestQuestionBank"  parameterType="string" resultType="com.tledu.cn.pojo.TestQuestionBank">
+        select * from testQuestionBank where t_id = #{value} and tq_isdelete = 0
+    </select>
+
+    <insert id="addTopicToTestPaperBybach" parameterType="com.tledu.cn.pojo.TestQuestionBank">
+        insert into testQuestionBank values
+        <foreach collection="list" item="testQuestionBank" separator=",">
+            (#{testQuestionBank.tq_id},#{testQuestionBank.tq_type},#{testQuestionBank.tq_content},#{testQuestionBank.tq_a},#{testQuestionBank.tq_b},#{testQuestionBank.tq_c},#{testQuestionBank.tq_d},#{testQuestionBank.tq_score},#{testQuestionBank.tq_answer},#{testQuestionBank.tq_classify},#{testQuestionBank.u_id},#{testQuestionBank.tq_isdelete},#{testQuestionBank.tq_createTime},#{testQuestionBank.t_id})
+        </foreach>
+    </insert>
+
+
+    <update id="openTestPaper" parameterType="string">
+        update testPaper set t_status = 1 where t_id = #{value}
+    </update>
+
+    <update id="deleteTopicFromTestPaper" parameterType="string">
+        update testQuestionBank set tq_isdelete = 1 where tq_id = #{tq_id}
+    </update>
+
+    <update id="deleteTopicFromTestPaperByBach" parameterType="string">
+        update testQuestionBank set tq_isdelete = 1 where tq_id in
+        <foreach collection="list" item="tq_id" open="(" close=")" separator=",">
+            #{tq_id}
+        </foreach>
+    </update>
 </mapper>
     

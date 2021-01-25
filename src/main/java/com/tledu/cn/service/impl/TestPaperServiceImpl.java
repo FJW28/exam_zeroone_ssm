@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -95,7 +96,88 @@ public class TestPaperServiceImpl implements TestPaperService {
         LocalDateTime now = LocalDateTime.now();
         String dateTime2String = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
         testQuestionBank.setTq_createTime(dateTime2String);
+
+        int j=questionBankDao.updateAddStatus(q_id);
         int i=testPaperDao.addTopic(testQuestionBank);
+        if(i>0&&j>0){
+            result=true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean addTopicToTestPaperBybach(List<String> idList, String t_id) {
+        boolean result=false;
+        List<QuestionBank> questionBanks=questionBankDao.findTopicByQidList(idList);
+        System.out.println(questionBanks+"11111111111");
+        List<TestQuestionBank> testQuestionBankList=new ArrayList<>();
+        for (QuestionBank topic : questionBanks) {
+            TestQuestionBank testQuestionBank=new TestQuestionBank();
+            testQuestionBank.setT_id(t_id);
+            testQuestionBank.setTq_id(topic.getQ_id());
+            testQuestionBank.setTq_type(topic.getQ_type());
+            testQuestionBank.setTq_content(topic.getQ_content());
+            testQuestionBank.setTq_a(topic.getQ_a());
+            testQuestionBank.setTq_b(topic.getQ_b());
+            testQuestionBank.setTq_c(topic.getQ_c());
+            testQuestionBank.setTq_d(topic.getQ_d());
+            testQuestionBank.setTq_answer(topic.getQ_answer());
+            testQuestionBank.setTq_classify(topic.getQ_classify());
+            testQuestionBank.setTq_isdelete(0);
+            testQuestionBank.setTq_score(topic.getQ_score());
+            testQuestionBank.setU_id(topic.getU_id());
+            LocalDateTime now = LocalDateTime.now();
+            String dateTime2String = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
+            testQuestionBank.setTq_createTime(dateTime2String);
+            testQuestionBankList.add(testQuestionBank);
+
+        }
+
+        int i=testPaperDao.addTopicToTestPaperBybach(testQuestionBankList);
+        System.out.println(idList+"5555555555555");
+        int j=questionBankDao.updateAddStatusByIdList(idList);
+        if(i>0&&j>0){
+            result=true;
+        }
+
+
+        return result;
+    }
+
+    @Override
+    public PageUtils findAllTestQuestionBank(Map<String, Object> params) {
+
+        List<TestQuestionBank> testQuestionBankList=testPaperDao.findAllTestQuestionBank(params.get("t_id").toString());
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<TestQuestionBank> pageInfo=new PageInfo<>(testQuestionBankList);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+    }
+
+    @Override
+    public boolean openTestPaper(String t_id) {
+        boolean result=false;
+        int i=testPaperDao.openTestPaper(t_id);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteTopicFromTestPaper(String tq_id) {
+        boolean result=false;
+        int i=testPaperDao.deleteTopicFromTestPaper(tq_id);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteTopicFromTestPaperByBach(List<String> idList1) {
+        boolean result=false;
+        int i=testPaperDao.deleteTopicFromTestPaperByBach(idList1);
         if(i>0){
             result=true;
         }

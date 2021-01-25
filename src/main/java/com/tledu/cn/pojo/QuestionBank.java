@@ -14,6 +14,7 @@ public class QuestionBank {
     private String q_answer;    //题目答案
     private String q_classify;  //单选题分类
     private String u_id;    //用户（出题人）id
+    private int q_isadd;
     private int    q_isdelete;  //是否删除，0否1是
     private String q_createTime;    //创建时间
 
@@ -105,6 +106,14 @@ public class QuestionBank {
         this.u_id = u_id;
     }
 
+    public int getQ_isadd() {
+        return q_isadd;
+    }
+
+    public void setQ_isadd(int q_isadd) {
+        this.q_isadd = q_isadd;
+    }
+
     public int getQ_isdelete() {
         return q_isdelete;
     }
@@ -135,6 +144,7 @@ public class QuestionBank {
                 ", q_answer='" + q_answer + '\'' +
                 ", q_classify='" + q_classify + '\'' +
                 ", u_id='" + u_id + '\'' +
+                ", q_isadd=" + q_isadd +
                 ", q_isdelete=" + q_isdelete +
                 ", q_createTime='" + q_createTime + '\'' +
                 '}';

@@ -41,4 +41,39 @@ public interface TestPaperDao {
      * @return
      */
     public int addTopic(TestQuestionBank testQuestionBank);
+
+    /**
+     * 查询试卷下的所有试题
+     * @param t_id
+     * @return
+     */
+    public List<TestQuestionBank> findAllTestQuestionBank(String  t_id);
+
+    /**
+     * 批量添加试题
+     * @param testQuestionBankList
+     * @return
+     */
+    public int addTopicToTestPaperBybach(List<TestQuestionBank> testQuestionBankList);
+
+    /**
+     * 开启试卷
+     * @param t_id
+     * @return
+     */
+    public int openTestPaper(String t_id);
+
+    /**
+     * 从试卷删除试题
+     * @param tq_id
+     * @return
+     */
+    public int deleteTopicFromTestPaper(String tq_id);
+
+    /**
+     * 从试卷批量删除试题
+     * @param idList1
+     * @return
+     */
+    public int deleteTopicFromTestPaperByBach(List<String> idList1);
 }
