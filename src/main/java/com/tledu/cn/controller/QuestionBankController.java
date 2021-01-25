@@ -184,13 +184,17 @@ public class QuestionBankController {
      */
     @RequestMapping("/batchDelete")
     @ResponseBody
-    public HashMap<String,Object> batchDelete(@RequestBody List<String> idList){
-        System.out.println(idList);
-//        List<String>idList=new ArrayList<String>();
-//        idList.add("c5ed45b4-2168-4d20-a878-3e1f4ad16218");
-//        idList.add("e5b4d734-28ab-4682-9d2b-4110f7c9c712");
+    public HashMap<String,Object> batchDelete(String idList){
+//        System.out.println(idList);
+        List<String> idList1=new ArrayList<String>();
+        String[] split = idList.split(",");
+        for (String s : split) {
+            idList1.add(s);
+        }
+
+        System.out.println(idList1);
         HashMap<String, Object> result = new HashMap<>();
-        boolean flag=questionBankService.batchDelete(idList);
+        boolean flag=questionBankService.batchDelete(idList1);
         if(flag){
             result.put("mark","1");
         }

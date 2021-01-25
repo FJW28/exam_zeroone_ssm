@@ -46,12 +46,12 @@
         select * from questionBank where q_content like concat('%',#{q_content},'%') and u_id=#{u_id}
     </select>
 
-    <delete id="batchDelete" parameterType="string">
-        delete from questionBank where q_id in
+    <update id="batchDelete" parameterType="string">
+        update questionBank set q_isdelete = 1  where q_id in
         <foreach collection="list" item="q_id" open="(" close=")" separator=",">
             #{q_id}
         </foreach>
-    </delete>
+    </update>
 
 
 
