@@ -9,6 +9,10 @@
     </select>
 
 
+    <select id="findTopicByQid" parameterType="string" resultType="com.tledu.cn.pojo.QuestionBank">
+        select * from questionBank where q_id= #{value} and q_isdelete = 0
+    </select>
+
 
     <insert id="addSingleChoice" parameterType="com.tledu.cn.pojo.QuestionBank">
         insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isdelete},#{q_createTime})
@@ -41,6 +45,13 @@
     <select id="fuzzySearch" resultType="com.tledu.cn.pojo.QuestionBank">
         select * from questionBank where q_content like concat('%',#{q_content},'%') and u_id=#{u_id}
     </select>
+
+    <delete id="batchDelete" parameterType="string">
+        delete from questionBank where q_id in
+        <foreach collection="list" item="q_id" open="(" close=")" separator=",">
+            #{q_id}
+        </foreach>
+    </delete>
 
 
 

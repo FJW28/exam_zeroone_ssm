@@ -1,6 +1,7 @@
 package com.tledu.cn.dao;
 
 import com.tledu.cn.pojo.TestPaper;
+import com.tledu.cn.pojo.TestQuestionBank;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -33,4 +34,11 @@ public interface TestPaperDao {
      * @return
      */
     public int updateTestPaper(TestPaper testPaper);
+
+    /**
+     * 添加试题
+     * @param testQuestionBank
+     * @return
+     */
+    public int addTopic(TestQuestionBank testQuestionBank);
 }

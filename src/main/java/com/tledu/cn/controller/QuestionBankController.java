@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.xml.bind.annotation.XmlList;
 import javax.xml.ws.RequestWrapper;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -173,6 +175,29 @@ public class QuestionBankController {
        // System.out.println(params);
         return questionBankService.fuzzySearch(params);
 
+    }
+
+    /**
+     * 批量删除
+     * @param idList
+     * @return
+     */
+    @RequestMapping("/batchDelete")
+    @ResponseBody
+    public HashMap<String,Object> batchDelete(@RequestBody List<String> idList){
+        System.out.println(idList);
+//        List<String>idList=new ArrayList<String>();
+//        idList.add("c5ed45b4-2168-4d20-a878-3e1f4ad16218");
+//        idList.add("e5b4d734-28ab-4682-9d2b-4110f7c9c712");
+        HashMap<String, Object> result = new HashMap<>();
+        boolean flag=questionBankService.batchDelete(idList);
+        if(flag){
+            result.put("mark","1");
+        }
+        else{
+            result.put("mark","0");
+        }
+        return result;
     }
 
 

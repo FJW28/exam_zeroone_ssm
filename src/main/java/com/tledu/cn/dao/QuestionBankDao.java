@@ -18,6 +18,12 @@ public interface QuestionBankDao {
      */
     public List<QuestionBank> findAllQuestionBank(String u_id);
 
+    /**
+     * 根据q_id查询试题
+     * @param q_id
+     * @return
+     */
+    public QuestionBank findTopicByQid(String q_id);
 
     /**
      * 添加选择题
@@ -76,4 +82,10 @@ public interface QuestionBankDao {
     //public List<QuestionBank> fuzzySearch(FuzzySearch fuzzySearch);
     public List<QuestionBank> fuzzySearch(@Param("q_content") String q_content,@Param("u_id") String u_id );
 
+    /**
+     * 批量删除
+     * @param idList
+     * @return
+     */
+    public int batchDelete(List<String> idList);
 }

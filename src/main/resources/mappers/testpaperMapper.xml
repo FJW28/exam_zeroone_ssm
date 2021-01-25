@@ -21,5 +21,9 @@
         t_endTime=#{t_endTime} where t_id=#{t_id}
     </update>
 
+    <insert id="addTopic" parameterType="com.tledu.cn.pojo.TestQuestionBank">
+        insert into testQuestionBank values(#{tq_id},#{tq_type},#{tq_content},#{tq_a},#{tq_b},#{tq_c},#{tq_d},#{tq_score},#{tq_answer},#{tq_classify},#{u_id},#{tq_isdelete},#{tq_createTime},#{t_id})
+    </insert>
+
 </mapper>
     

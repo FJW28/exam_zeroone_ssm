@@ -132,5 +132,15 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
     }
 
+    @Override
+    public boolean batchDelete(List<String> idList) {
+        boolean result=false;
+        int i=questionBankDao.batchDelete(idList);
+        if(i>0){
+            result=true;
+        }
+        return result;
+    }
+
 
 }

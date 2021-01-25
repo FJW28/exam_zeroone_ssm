@@ -74,4 +74,11 @@ public interface QuestionBankService {
      * @return
      */
     public PageUtils fuzzySearch(Map<String, Object> params);
+
+    /**
+     * 批量删除
+     * @param idList
+     * @return
+     */
+    public boolean batchDelete(List<String> idList);
 }
