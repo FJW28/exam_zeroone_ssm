@@ -81,9 +81,9 @@ public class TestPaperController {
     @ResponseBody
     public HashMap<String,Object> addTopicToTestPaper(String t_id,String q_id){
 //        String t_id="f0837b30-0975-4613-b6ad-79c9df472cc6";
-//        String q_id="176152f9-95ed-4a62-a4e0-3a802ad1b985";
-//        String u_id="94ffe33a-3095-42a4-89c7-391a715a8e6e";
-        System.out.println(t_id+q_id);
+//        String q_id="518b0ca8-33ee-411e-930a-2c1a2bd9aaf9";
+
+//        System.out.println(t_id+q_id);
         HashMap<String,Object> result=new  HashMap<String,Object>();
         boolean flag=testPaperService.addTopicToTestPaper(t_id,q_id);
         if(flag){

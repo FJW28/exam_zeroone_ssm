@@ -77,6 +77,7 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean addTopicToTestPaper(String t_id, String q_id) {
         boolean result=false;
         QuestionBank topic = questionBankDao.findTopicByQid(q_id);
+        System.out.println(topic+"1111");
         TestQuestionBank testQuestionBank=new TestQuestionBank();
         testQuestionBank.setT_id(t_id);
         testQuestionBank.setTq_id(topic.getQ_id());
