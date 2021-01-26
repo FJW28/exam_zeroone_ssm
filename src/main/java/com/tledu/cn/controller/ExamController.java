@@ -25,9 +25,7 @@ public class ExamController {
     @RequestMapping("/stuLogin")
     @ResponseBody
     public Student stuLogin(@RequestBody Student student) {
-        // System.out.println(student);
         Student student1 = examService.studentRegist(student);
-        //System.out.println(student1+"1111111111111");
         if (student1==null){
             return new Student();
         }else {

@@ -16,13 +16,15 @@ public class ExamServiceImpl implements ExamService {
     @Autowired
     private ExamDao examDao;
 
+
     @Override
     public Student studentRegist(Student student) {
         Student student1 = null;
+        //获取试卷表信息
         TestPaper testPaper = examDao.selectTestPaper(student.getT_id());
-        // System.out.println(student);
-        //System.out.println(testPaper);
+        //判断试卷表邀请码和学生邀请码是否一样
         if (student.getStu_checkNum().equals(testPaper.getT_checkNum())) {
+            //如果是，添加
             student.setStu_id(UUID.randomUUID().toString());
             LocalDateTime now = LocalDateTime.now();//创建本地时间对象
             String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
