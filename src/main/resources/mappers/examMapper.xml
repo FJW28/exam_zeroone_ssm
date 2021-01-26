@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.ExamDao">
+    <select id="selectTestPaper" parameterType="string" resultType="com.tledu.cn.pojo.TestPaper">
+        select * from testPaper where t_id=#{value}
+    </select>
+
+    <insert id="studentRegist" parameterType="com.tledu.cn.pojo.Student">
+        insert into student(stu_id,stu_name,stu_phone,stu_checkNum,t_id,stu_isdelete,stu_createTime)
+        values (#{stu_id},#{stu_name},#{stu_phone},#{stu_checkNum},#{t_id},#{stu_isdelete},#{stu_createTime})
+    </insert>
+
+    <select id="studentLogin" parameterType="string" resultType="com.tledu.cn.pojo.Student">
+        select * from student where stu_id=#{value}
+    </select>
+
+</mapper>
+    
