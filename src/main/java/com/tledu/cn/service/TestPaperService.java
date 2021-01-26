@@ -77,5 +77,10 @@ public interface TestPaperService {
     public boolean deleteTopicFromTestPaper(String tq_id);
 
 
+    /**
+     * 批量删除试题
+     * @param idList1
+     * @return
+     */
     public boolean deleteTopicFromTestPaperByBach(List<String> idList1);
 }

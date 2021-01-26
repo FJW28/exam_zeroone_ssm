@@ -106,12 +106,30 @@ public interface QuestionBankDao {
 
 
     /**
-     * 修改试题的添加状态
+     * 修改试题的添加状态1
      * @param q_id
      * @return
      */
     public int updateAddStatus(String q_id);
 
-
+    /**
+     * 修改试题的添加状态1
+     * @param idList
+     * @return
+     */
     public int updateAddStatusByIdList(List<String> idList);
+
+    /**
+     * 修改试题的添加状态0
+     * @param q_id
+     * @return
+     */
+    public int updateAddStatus1(String q_id);
+
+    /**
+     * 修改试题的添加状态0
+     * @param idList1
+     * @return
+     */
+    public int updateAddStatusByIdList1(List<String> idList1);
 }

@@ -138,7 +138,7 @@ public class TestPaperController {
     @RequestMapping("/openTestPaper")
     @ResponseBody
     public HashMap<String,Object> openTestPaper(String t_id){
-        System.out.println(t_id);
+      //  System.out.println(t_id);
         HashMap<String,Object> result=new  HashMap<String,Object>();
         boolean flag=testPaperService.openTestPaper(t_id);
         if(flag){
@@ -157,7 +157,7 @@ public class TestPaperController {
     @RequestMapping("/deleteTopicFromTestPaper")
     @ResponseBody
     public HashMap<String,Object> deleteTopicFromTestPaper(String tq_id){
-        System.out.println(tq_id);
+      //  System.out.println(tq_id);
         HashMap<String,Object> result=new  HashMap<String,Object>();
         boolean flag=testPaperService.deleteTopicFromTestPaper(tq_id);
         if(flag){

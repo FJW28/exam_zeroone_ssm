@@ -53,7 +53,7 @@ public class QuestionBankController {
     @RequestMapping("/addSingleChoice")
     @ResponseBody
     public HashMap<String, Object> addSingleChoice(@RequestBody QuestionBank questionBank) {
-        System.out.println(questionBank);
+       // System.out.println(questionBank);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = questionBankService.addSingleChoice(questionBank);
         if (flag) {
@@ -93,7 +93,7 @@ public class QuestionBankController {
     @RequestMapping("/deleteTopic")
     @ResponseBody
     public HashMap<String, Object> deleteTopic(String q_id) {
-        System.out.println(q_id);
+      //  System.out.println(q_id);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = questionBankService.deleteQuestionBank(q_id);
         if (flag) {
@@ -113,7 +113,7 @@ public class QuestionBankController {
     @RequestMapping("/updateSingleChoice")
     @ResponseBody
     public HashMap<String, Object> updateSingleChoice(@RequestBody QuestionBank questionBank) {
-        System.out.println(questionBank);
+      //  System.out.println(questionBank);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = questionBankService.updateSingleChoice(questionBank);
         if (flag) {
@@ -133,7 +133,7 @@ public class QuestionBankController {
     @RequestMapping("/updateBriefAnswer")
     @ResponseBody
     public HashMap<String, Object> updateBriefAnswer(@RequestBody QuestionBank questionBank) {
-        System.out.println(questionBank);
+     //   System.out.println(questionBank);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = questionBankService.updateBriefAnswer(questionBank);
         if (flag) {
@@ -153,7 +153,7 @@ public class QuestionBankController {
     @RequestMapping("/findAllSingleChoice")
     @ResponseBody
     public PageUtils findAllSingleChoice(@RequestBody Map<String, Object> params) {
-        System.out.println(params);
+      //  System.out.println(params);
         return questionBankService.findAllSingleChoice(params);
 
     }
@@ -168,7 +168,7 @@ public class QuestionBankController {
     @RequestMapping("/findAllBriefAnswer")
     @ResponseBody
     public PageUtils findAllBriefAnswer(@RequestBody Map<String, Object> params) {
-        System.out.println(params);
+     //   System.out.println(params);
         return questionBankService.findAllBriefAnswer(params);
 
     }
@@ -203,7 +203,7 @@ public class QuestionBankController {
             idList1.add(s);
         }
 
-        System.out.println(idList1);
+    //    System.out.println(idList1);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag=questionBankService.batchDelete(idList1);
         if(flag){

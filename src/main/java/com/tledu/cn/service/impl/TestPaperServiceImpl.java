@@ -78,7 +78,7 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean addTopicToTestPaper(String t_id, String q_id) {
         boolean result=false;
         QuestionBank topic = questionBankDao.findTopicByQid(q_id);
-        System.out.println(topic+"1111");
+    //    System.out.println(topic+"1111");
         TestQuestionBank testQuestionBank=new TestQuestionBank();
         testQuestionBank.setT_id(t_id);
         testQuestionBank.setTq_id(topic.getQ_id());
@@ -109,7 +109,7 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean addTopicToTestPaperBybach(List<String> idList, String t_id) {
         boolean result=false;
         List<QuestionBank> questionBanks=questionBankDao.findTopicByQidList(idList);
-        System.out.println(questionBanks+"11111111111");
+      //  System.out.println(questionBanks+"11111111111");
         List<TestQuestionBank> testQuestionBankList=new ArrayList<>();
         for (QuestionBank topic : questionBanks) {
             TestQuestionBank testQuestionBank=new TestQuestionBank();
@@ -134,7 +134,7 @@ public class TestPaperServiceImpl implements TestPaperService {
         }
 
         int i=testPaperDao.addTopicToTestPaperBybach(testQuestionBankList);
-        System.out.println(idList+"5555555555555");
+    //    System.out.println(idList+"5555555555555");
         int j=questionBankDao.updateAddStatusByIdList(idList);
         if(i>0&&j>0){
             result=true;
@@ -168,7 +168,8 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean deleteTopicFromTestPaper(String tq_id) {
         boolean result=false;
         int i=testPaperDao.deleteTopicFromTestPaper(tq_id);
-        if(i>0){
+        int j=questionBankDao.updateAddStatus1(tq_id);
+        if(i>0&&j>0){
             result=true;
         }
         return result;
@@ -178,7 +179,8 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean deleteTopicFromTestPaperByBach(List<String> idList1) {
         boolean result=false;
         int i=testPaperDao.deleteTopicFromTestPaperByBach(idList1);
-        if(i>0){
+        int j=questionBankDao.updateAddStatusByIdList1(idList1);
+        if(i>0&&j>0){
             result=true;
         }
         return result;

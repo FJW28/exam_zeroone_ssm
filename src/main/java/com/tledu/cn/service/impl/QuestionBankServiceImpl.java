@@ -36,7 +36,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     @Override
     public PageUtils findAllQuestionBank1(Map<String, Object> params) {
         List<QuestionBank> allQuestionBank = questionBankDao.findAllQuestionBank1(params.get("u_id").toString());
-        System.out.println(allQuestionBank);
+     //   System.out.println(allQuestionBank);
         //分页核心代码
         PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
         PageInfo<QuestionBank> pageInfo=new PageInfo<>(allQuestionBank);
@@ -135,7 +135,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         String q_content=params.get("q_content").toString();
         String u_id=params.get("u_id").toString();
         List<QuestionBank> questionBankList = questionBankDao.fuzzySearch(q_content,u_id);
-        System.out.println(questionBankList);
+       // System.out.println(questionBankList);
         //分页核心代码
         PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
         PageInfo<QuestionBank> pageInfo=new PageInfo<>(questionBankList);
@@ -146,6 +146,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     public boolean batchDelete(List<String> idList) {
         boolean result=false;
         int i=questionBankDao.batchDelete(idList);
+
         if(i>0){
             result=true;
         }

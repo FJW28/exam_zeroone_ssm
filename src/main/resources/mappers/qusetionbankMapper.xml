@@ -77,6 +77,17 @@
         </foreach>
      </update>
 
+    <update id="updateAddStatus1" parameterType="string">
+        update questionBank set q_isadd = 0 where q_id = #{value}
+    </update>
+
+    <update id="updateAddStatusByIdList1" parameterType="string">
+        update questionBank set q_isadd = 1 where q_id in
+        <foreach collection="list" item="q_id" open="(" close=")" separator=",">
+            #{q_id}
+        </foreach>
+    </update>
+
 
 
 </mapper>
