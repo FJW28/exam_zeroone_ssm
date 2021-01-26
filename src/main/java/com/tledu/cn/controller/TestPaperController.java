@@ -31,7 +31,13 @@ public class TestPaperController {
     @ResponseBody
     //添加试卷
     public HashMap<String, Object> addTestPaper(@RequestBody TestPaper testPaper) {
-
+        //System.out.println(testPaper);
+        String t_startTime = testPaper.getT_startTime();
+        String replace_t_startTime = t_startTime.replace("T", " ");
+        String t_endTime = testPaper.getT_endTime();
+        String replace_t_endTime = t_endTime.replace("T", " ");
+        testPaper.setT_startTime(replace_t_startTime);
+        testPaper.setT_endTime(replace_t_endTime);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag = testPaperService.addTestPaper(testPaper);
         if (flag) {
