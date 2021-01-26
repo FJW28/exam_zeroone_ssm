@@ -194,4 +194,16 @@ public class TestPaperController {
         return result;
     }
 
+    /**
+     * 回显试卷信息
+     * @param// q_id
+     * @return TestPaper
+     */
+    @RequestMapping("/findTestPaperURl")
+    @ResponseBody
+    public TestPaper findTestPaperURl(String t_id){
+
+        return testPaperService.findTestPaperURl(t_id);
+    }
+
 }

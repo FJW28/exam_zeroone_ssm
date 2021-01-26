@@ -83,4 +83,11 @@ public interface TestPaperService {
      * @return
      */
     public boolean deleteTopicFromTestPaperByBach(List<String> idList1);
+
+    /**
+     * 回显试卷信息
+     * @param// q_id
+     * @return TestPaper
+     */
+    public TestPaper findTestPaperURl(String t_id);
 }

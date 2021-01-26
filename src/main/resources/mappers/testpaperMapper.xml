@@ -51,5 +51,9 @@
             #{tq_id}
         </foreach>
     </update>
+
+    <select id="findTestPaperURl" parameterType="string" resultType="com.tledu.cn.pojo.TestPaper">
+        select * from testPaper where t_id=#{value}
+    </select>
 </mapper>
     

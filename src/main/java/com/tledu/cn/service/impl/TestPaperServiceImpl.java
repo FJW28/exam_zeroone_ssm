@@ -185,4 +185,9 @@ public class TestPaperServiceImpl implements TestPaperService {
         }
         return result;
     }
+
+    @Override
+    public TestPaper findTestPaperURl(String t_id) {
+        return testPaperDao.findTestPaperURl(t_id);
+    }
 }
