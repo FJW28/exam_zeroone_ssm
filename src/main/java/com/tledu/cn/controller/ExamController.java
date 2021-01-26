@@ -16,11 +16,23 @@ public class ExamController {
     @Autowired
     private ExamService examService;
 
+
+    /**
+     *考生登录
+     * @param student
+     * @return
+     */
     @RequestMapping("/stuLogin")
     @ResponseBody
-    //查询题库所有试题
-    public Student stuLogin(Student student) {
+    public Student stuLogin(@RequestBody Student student) {
         // System.out.println(student);
-        return examService.studentRegist(student);
+        Student student1 = examService.studentRegist(student);
+        //System.out.println(student1+"1111111111111");
+        if (student1==null){
+            return new Student();
+        }else {
+            return student1;
+        }
+
     }
 }
