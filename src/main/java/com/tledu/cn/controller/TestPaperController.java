@@ -202,6 +202,7 @@ public class TestPaperController {
     @RequestMapping("/findTestPaperURl")
     @ResponseBody
     public TestPaper findTestPaperURl(String t_id){
+        System.out.println(t_id);
 
         return testPaperService.findTestPaperURl(t_id);
     }
