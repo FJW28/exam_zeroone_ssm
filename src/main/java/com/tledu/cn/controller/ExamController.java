@@ -1,6 +1,8 @@
 package com.tledu.cn.controller;
 
+import com.tledu.cn.pojo.PageBean;
 import com.tledu.cn.pojo.Student;
+import com.tledu.cn.pojo.TestQuestionBank;
 import com.tledu.cn.service.ExamService;
 import com.tledu.cn.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,13 @@ public class ExamController {
             return student1;
         }
 
+    }
+
+    @RequestMapping("/selectExam")
+    @ResponseBody
+    public PageBean<TestQuestionBank> selectExam(String t_id,int currentPage){
+
+        PageBean<TestQuestionBank> allByPage = examService.selectExam(currentPage, 1, t_id);
+        return allByPage;
     }
 }

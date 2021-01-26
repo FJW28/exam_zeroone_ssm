@@ -1,14 +1,17 @@
 package com.tledu.cn.service.impl;
 
 import com.tledu.cn.dao.ExamDao;
+import com.tledu.cn.pojo.PageBean;
 import com.tledu.cn.pojo.Student;
 import com.tledu.cn.pojo.TestPaper;
+import com.tledu.cn.pojo.TestQuestionBank;
 import com.tledu.cn.service.ExamService;
 import com.tledu.cn.util.JDK8DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -38,7 +41,17 @@ public class ExamServiceImpl implements ExamService {
         return student1;
     }
 
-
+    @Override
+    public PageBean<TestQuestionBank> selectExam(Integer currentPage, Integer pageSize, String t_id) {
+        List<TestQuestionBank> testQuestionBanks = examDao.selectExam(t_id);
+        PageBean<TestQuestionBank> pageBean = new PageBean<TestQuestionBank>(testQuestionBanks.size(), currentPage, pageSize, 5);
+        //判断是否是最后一页,如果最后一页就显示最后一页的几条，不是最后一页就显示pageSize条
+        if(currentPage==pageBean.getTotalPage())
+            pageBean.setList(testQuestionBanks.subList((currentPage-1)*pageSize, testQuestionBanks.size()));
+        else
+            pageBean.setList(testQuestionBanks.subList((currentPage-1)*pageSize, (currentPage-1)*pageSize+pageSize));
+        return pageBean;
+    }
 }
 
 

@@ -2,7 +2,10 @@ package com.tledu.cn.dao;
 
 import com.tledu.cn.pojo.Student;
 import com.tledu.cn.pojo.TestPaper;
+import com.tledu.cn.pojo.TestQuestionBank;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ExamDao {
@@ -26,4 +29,6 @@ public interface ExamDao {
      * @return
      */
     public Student studentLogin(String stu_id);
+
+    public List<TestQuestionBank> selectExam(String t_id);
 }
