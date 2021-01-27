@@ -38,9 +38,10 @@ public class ExamController {
 
     @RequestMapping("/selectExam")
     @ResponseBody
-    public PageBean<TestQuestionBank> selectExam(String t_id,int currentPage){
-
-        PageBean<TestQuestionBank> allByPage = examService.selectExam(currentPage, 1, t_id);
+    public PageBean<TestQuestionBank> selectExam(String t_id,String currentPage){
+       // System.out.println(currentPage);
+        int currentPage1 = Integer.parseInt(currentPage);
+        PageBean<TestQuestionBank> allByPage = examService.selectExam(currentPage1, 1, t_id);
         return allByPage;
     }
 }
