@@ -1,9 +1,12 @@
 package com.tledu.cn.controller;
 
+import com.tledu.cn.pojo.Student;
+import com.tledu.cn.pojo.TestAndAnswer;
 import com.tledu.cn.pojo.TestPaper;
 import com.tledu.cn.pojo.User;
 import com.tledu.cn.service.TestPaperService;
 import com.tledu.cn.util.PageUtils;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -211,6 +214,34 @@ public class TestPaperController {
         System.out.println(t_id);
 
         return testPaperService.findTestPaperURl(t_id);
+    }
+
+    /**
+     * 查询试卷考试成绩
+     * @param params
+     * @return
+     */
+    @RequestMapping("/queryScore")
+    @ResponseBody
+    public PageUtils queryScore(@RequestBody Map<String,Object> params){
+        System.out.println(params);
+        PageUtils students=testPaperService.queryScore(params);
+        return students;
+    }
+
+
+    /**
+     * 查询试题与考生的答案
+     * @param params
+     * @return
+     */
+    @RequestMapping("/testAndAnswer")
+    @ResponseBody
+    public PageUtils testAndAnswer(@RequestBody Map<String,Object> params){
+        System.out.println(params);
+        PageUtils pageUtils=testPaperService.testAndAnswer(params);
+       // System.out.println(pageUtils);
+        return pageUtils;
     }
 
 }

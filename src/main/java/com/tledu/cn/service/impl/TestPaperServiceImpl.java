@@ -4,9 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.QuestionBankDao;
 import com.tledu.cn.dao.TestPaperDao;
-import com.tledu.cn.pojo.QuestionBank;
-import com.tledu.cn.pojo.TestPaper;
-import com.tledu.cn.pojo.TestQuestionBank;
+import com.tledu.cn.pojo.*;
 import com.tledu.cn.service.TestPaperService;
 import com.tledu.cn.util.JDK8DateUtil;
 import com.tledu.cn.util.PageUtils;
@@ -190,5 +188,25 @@ public class TestPaperServiceImpl implements TestPaperService {
     @Override
     public TestPaper findTestPaperURl(String t_id) {
         return testPaperDao.findTestPaperURl(t_id);
+    }
+
+    @Override
+    public PageUtils queryScore(Map<String, Object> params) {
+        List<Student> students=testPaperDao.queryScore(params.get("t_id").toString());
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<Student> pageInfo=new PageInfo<>(students);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
+    }
+
+    @Override
+    public PageUtils testAndAnswer(Map<String, Object> params) {
+
+        List<TestAndAnswer> testAndAnswerList=testPaperDao.testAndAnswer(params.get("t_id").toString(),params.get("stu_id").toString());
+      //  System.out.println(testAndAnswerList);
+        //分页核心代码
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageNumber").toString()));
+        PageInfo<TestAndAnswer> pageInfo=new PageInfo<>(testAndAnswerList);
+        return new PageUtils(pageInfo.getList(),new Long(pageInfo.getTotal()).intValue());
     }
 }

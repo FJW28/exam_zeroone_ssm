@@ -20,5 +20,38 @@
         select * from testQuestionBank where t_id=#{value} and tq_isdelete=0;
     </select>
 
+    <select id="findStudentAnswerByTq_id" parameterType="string" resultType="com.tledu.cn.pojo.StudentAnswer">
+        select * from stu_answer where tq_id = #{value}
+    </select>
+
+    <update id="updateAnswer" parameterType="com.tledu.cn.pojo.StudentAnswer">
+        update stu_answer set sa_answer =#{sa_answer} where tq_id = #{tq_id}
+    </update>
+
+    <insert id="saveAnswer" parameterType="com.tledu.cn.pojo.StudentAnswer">
+        insert into stu_answer values(#{sa_id},#{sa_type},#{sa_answer},#{tq_id},#{t_id},#{stu_id},#{sa_score})
+    </insert>
+
+    <update id="setScore" >
+        update stu_answer set sa_score = #{tq_score} where tq_id =#{tq_id}
+    </update>
+
+    <select id="findStudentById" parameterType="com.tledu.cn.pojo.StudentAnswer" resultType="com.tledu.cn.pojo.Student">
+            select * from student where stu_id = #{stu_id}
+    </select>
+
+    <select id="calculatedScore" parameterType="com.tledu.cn.pojo.Student" resultType="com.tledu.cn.pojo.StudentAnswer">
+        select  * from stu_answer where stu_id =#{stu_id} and t_id = #{t_id}
+    </select>
+
+    <update id="setFinishTimeandScore" parameterType="com.tledu.cn.pojo.Student">
+        update student set stu_finishTime = #{stu_finishTime} , stu_score=#{stu_score} where stu_id=#{stu_id}
+    </update>
+
+    <update id="setScore1" parameterType="string">
+        update stu_answer set sa_score = 0 where tq_id=#{tq_id}
+    </update>
+
+
 </mapper>
     

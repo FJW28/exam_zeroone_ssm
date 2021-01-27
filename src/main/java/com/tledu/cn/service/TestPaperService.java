@@ -90,4 +90,18 @@ public interface TestPaperService {
      * @return TestPaper
      */
     public TestPaper findTestPaperURl(String t_id);
+
+    /**
+     * 查询试卷考试成绩
+     * @param params
+     * @return
+     */
+    public PageUtils queryScore(Map<String, Object> params);
+
+    /**
+     * 查询试题与考生的答案
+     * @param params
+     * @return
+     */
+    public PageUtils testAndAnswer(Map<String, Object> params);
 }

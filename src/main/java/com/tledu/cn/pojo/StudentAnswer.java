@@ -4,23 +4,10 @@ public class StudentAnswer {
     private String sa_id;   //主键id
     private String sa_type;     //试题类型
     private String sa_answer;   //考生答案
-    private String q_id;    //试题id
+    private String tq_id;    //试题id
     private String t_id;    //试卷id
     private String stu_id;  //考生id
     private int sa_score;   //单题分数
-
-    public StudentAnswer(String sa_id, String sa_type, String sa_answer, String q_id, String t_id, String stu_id, int sa_score) {
-        this.sa_id = sa_id;
-        this.sa_type = sa_type;
-        this.sa_answer = sa_answer;
-        this.q_id = q_id;
-        this.t_id = t_id;
-        this.stu_id = stu_id;
-        this.sa_score = sa_score;
-    }
-
-    public StudentAnswer() {
-    }
 
     public String getSa_id() {
         return sa_id;
@@ -46,12 +33,12 @@ public class StudentAnswer {
         this.sa_answer = sa_answer;
     }
 
-    public String getQ_id() {
-        return q_id;
+    public String getTq_id() {
+        return tq_id;
     }
 
-    public void setQ_id(String q_id) {
-        this.q_id = q_id;
+    public void setTq_id(String tq_id) {
+        this.tq_id = tq_id;
     }
 
     public String getT_id() {
@@ -84,7 +71,7 @@ public class StudentAnswer {
                 "sa_id='" + sa_id + '\'' +
                 ", sa_type='" + sa_type + '\'' +
                 ", sa_answer='" + sa_answer + '\'' +
-                ", q_id='" + q_id + '\'' +
+                ", tq_id='" + tq_id + '\'' +
                 ", t_id='" + t_id + '\'' +
                 ", stu_id='" + stu_id + '\'' +
                 ", sa_score=" + sa_score +

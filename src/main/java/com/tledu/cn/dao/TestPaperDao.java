@@ -1,8 +1,11 @@
 package com.tledu.cn.dao;
 
+import com.tledu.cn.pojo.Student;
+import com.tledu.cn.pojo.TestAndAnswer;
 import com.tledu.cn.pojo.TestPaper;
 import com.tledu.cn.pojo.TestQuestionBank;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -83,4 +86,26 @@ public interface TestPaperDao {
      * @return TestPaper
      */
     public TestPaper findTestPaperURl(String t_id);
+
+    /**
+     * 根据id查询单个试题
+     * @param tq_id
+     * @return
+     */
+    public TestQuestionBank findTopicByTq_id(String tq_id);
+
+    /**
+     * 查询试卷成绩
+     * @param t_id
+     * @return
+     */
+    List<Student> queryScore(String t_id);
+
+    /**
+     * 查询试题与考生的答案
+     * @param t_id
+     * @param stu_id
+     * @return
+     */
+    public List<TestAndAnswer> testAndAnswer(@Param("t_id") String t_id,@Param("stu_id") String stu_id);
 }
