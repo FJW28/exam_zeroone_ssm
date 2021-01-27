@@ -52,6 +52,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         LocalDateTime now = LocalDateTime.now();//创建本地时间对象
         String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
         questionBank.setQ_createTime(localDateTimeString);
+        questionBank.setQ_isadd(0);
         int i = questionBankDao.addSingleChoice(questionBank);
         if(i>0){
             result=true;
@@ -67,6 +68,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         LocalDateTime now = LocalDateTime.now();//创建本地时间对象
         String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
         questionBank.setQ_createTime(localDateTimeString);
+        questionBank.setQ_isadd(0);
         int i = questionBankDao.addBriefAnswer(questionBank);
         if(i>0){
             result=true;

@@ -19,11 +19,11 @@
 
 
     <insert id="addSingleChoice" parameterType="com.tledu.cn.pojo.QuestionBank">
-        insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isdelete},#{q_createTime})
+        insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isadd},#{q_isdelete},#{q_createTime})
     </insert>
 
     <insert id="addBriefAnswer" parameterType="com.tledu.cn.pojo.QuestionBank">
-       insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isdelete},#{q_createTime})
+       insert into questionBank values (#{q_id},#{q_type},#{q_content},#{q_a},#{q_b},#{q_c},#{q_d},#{q_score},#{q_answer},#{q_classify},#{u_id},#{q_isadd},#{q_isdelete},#{q_createTime})
     </insert>
 
     <update id="deleteQuestionBank"  parameterType="string" >
