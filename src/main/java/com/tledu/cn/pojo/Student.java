@@ -1,6 +1,8 @@
 package com.tledu.cn.pojo;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     private String stu_id;  //主键id
     private String stu_name;    //考生姓名
     private String stu_phone;   //考生手机号

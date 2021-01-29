@@ -1,6 +1,8 @@
 package com.tledu.cn.pojo;
 
-public class TestAndAnswer {
+import java.io.Serializable;
+
+public class TestAndAnswer implements Serializable {
     private String tq_id;   //主键id
     private String tq_type; //题目类型
     private String tq_content;  //单选题题目

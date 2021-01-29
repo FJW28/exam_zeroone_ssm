@@ -48,12 +48,12 @@ public class UserController {
     @RequestMapping("/login")
     @ResponseBody
     public User login(@RequestBody User user) {
-        User user1 = null;
-        user1 = userService.login(user);
-        if (user1 != null) {
-            return user1;
+        User login = userService.login(user);
+        if(login==null){
+            return new User();
+        }else {
+            return login;
         }
-        return user1;
 
     }
 

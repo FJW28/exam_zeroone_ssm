@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.SystemDao">
+
+    <insert id="managerRegist" parameterType="com.tledu.cn.pojo.Manager">
+        insert into manager values(#{m_id},#{m_username},#{m_password},#{m_isdelete},#{m_createTime})
+    </insert>
+
+    <select id="managerLogin" parameterType="com.tledu.cn.pojo.Manager" resultType="com.tledu.cn.pojo.Manager">
+        select * from manager where m_username= #{m_username} and m_password =#{m_password}
+    </select>
+
+    <select id="findAllUser" resultType="com.tledu.cn.pojo.User">
+        select * from user where u_isdelete = 0;
+    </select>
+
+    <update id="openUser" parameterType="string">
+        update user set u_status = 0 where u_id=#{value}
+    </update>
+
+    <update id="closeUser" parameterType="string">
+        update user set u_status = 1 where u_id=#{value}
+    </update>
+
+    <update id="deleteUser" parameterType="string">
+        update user set u_isdelete = 1 where u_id=#{value}
+    </update>
+
+    <select id="fuzzySearchUser" parameterType="string" resultType="com.tledu.cn.pojo.User">
+        select * from user where u_username like concat('%',#{value},'%') and u_isdelete = 0
+    </select>
+
+    <select id="findAllMenu" resultType="com.tledu.cn.pojo.Menu">
+        select * from menu where menu_isdelete = 0
+    </select>
+
+    <insert id="addMenu" parameterType="com.tledu.cn.pojo.Menu">
+        insert into menu values(#{menu_id},#{menu_name},#{menu_level},#{menu_isdelete},#{menu_createTime})
+    </insert>
+
+    <update id="deleteMenu" parameterType="string">
+        update menu set menu_isdelete = 1 where menu_id = #{value}
+    </update>
+
+
+</mapper>

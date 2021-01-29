@@ -1,6 +1,8 @@
 package com.tledu.cn.pojo;
 
-public class TestPaper {
+import java.io.Serializable;
+
+public class TestPaper implements Serializable {
     private String t_id;    //主键id
     private String t_title; //试卷标题
     private String t_classify;  //试卷分类

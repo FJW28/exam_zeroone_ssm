@@ -1,8 +1,11 @@
 package com.tledu.cn.pojo;
+
+import java.io.Serializable;
+
 /*
 * 单选题实体类
 * */
-public class QuestionBank {
+public class QuestionBank implements Serializable {
     private String q_id;  //单选题id
     private String q_type;   //题目类型
     private String q_content;   //题目内容

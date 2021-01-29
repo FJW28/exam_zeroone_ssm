@@ -1,14 +1,30 @@
 package com.tledu.cn.pojo;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String u_id;    //用户id
     private String u_phone;     //用户手机号
     private String u_password;  //用户密码
     private String u_username;  //用户名
     private int u_status;   //用户状态，0启用，1禁用
+    private String u_status_Str;
     private int u_isdelete;     //账号是否被删除，0否1是
     private String u_createTime;    //创建时间
+
+    public String getU_status_Str() {
+        if(u_status==0){
+            u_status_Str="启用";
+        }else if(u_status==1){
+            u_status_Str="禁用";
+        }
+        return u_status_Str;
+    }
+
+    public void setU_status_Str(String u_status_Str) {
+        this.u_status_Str = u_status_Str;
+    }
 
     public String getU_id() {
         return u_id;
@@ -74,6 +90,7 @@ public class User {
                 ", u_password='" + u_password + '\'' +
                 ", u_username='" + u_username + '\'' +
                 ", u_status=" + u_status +
+                ", u_status_Str='" + u_status_Str + '\'' +
                 ", u_isdelete=" + u_isdelete +
                 ", u_createTime='" + u_createTime + '\'' +
                 '}';

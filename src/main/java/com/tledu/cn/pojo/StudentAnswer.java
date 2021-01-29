@@ -1,6 +1,8 @@
 package com.tledu.cn.pojo;
 
-public class StudentAnswer {
+import java.io.Serializable;
+
+public class StudentAnswer implements Serializable {
     private String sa_id;   //主键id
     private String sa_type;     //试题类型
     private String sa_answer;   //考生答案

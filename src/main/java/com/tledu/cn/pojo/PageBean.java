@@ -1,9 +1,10 @@
 package com.tledu.cn.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class PageBean<T> {
+public class PageBean<T> implements Serializable {
     // 你页面需要展示的集合
     private List<T> list;
     // 显示的总记录数
