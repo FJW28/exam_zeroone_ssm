@@ -73,5 +73,9 @@
         select  t.*,s.sa_answer,s.sa_score   FROM testQuestionBank t inner join stu_answer s on t.tq_id=s.tq_id where t.t_id= #{t_id} and s.stu_id= #{stu_id}
     </select>
 
+    <select id="findTestPaperByCheckNum" parameterType="string" resultType="com.tledu.cn.pojo.TestPaper">
+        select * from testPaper where t_checkNum = #{value}
+    </select>
+
 </mapper>
     

@@ -110,4 +110,11 @@ public interface TestPaperDao {
     public List<TestAndAnswer> testAndAnswer(@Param("t_id") String t_id,@Param("stu_id") String stu_id);
 
     public int updateTopIcId(@Param("tq_id1") String tq_id1,@Param("tq_id")String ta_id);
+
+    /**
+     * 根据验证码查找试卷
+     * @param stu_checkNum
+     * @return
+     */
+    TestPaper findTestPaperByCheckNum(String stu_checkNum);
 }

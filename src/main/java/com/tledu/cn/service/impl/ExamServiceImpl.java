@@ -25,21 +25,28 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public Student studentRegist(Student student) {
         Student student1 = null;
+
         //获取试卷表信息
-        TestPaper testPaper = examDao.selectTestPaper(student.getT_id());
+        /*TestPaper testPaper = examDao.selectTestPaper(student.getT_id());*/
         //判断试卷表邀请码和学生邀请码是否一样
-        if (student.getStu_checkNum().equals(testPaper.getT_checkNum())) {
-            //如果是，添加
-            student.setStu_id(UUID.randomUUID().toString());
-            LocalDateTime now = LocalDateTime.now();//创建本地时间对象
-            String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
-            student.setStu_createTime(localDateTimeString);
-            student.setStu_isdelete(0);
-            int i = examDao.studentRegist(student);
-            if (i > 0) {
-                student1 = examDao.studentLogin(student.getStu_id());
-            }
+
+        //如果是，添加
+        student.setStu_id(UUID.randomUUID().toString());
+        LocalDateTime now = LocalDateTime.now();//创建本地时间对象
+        String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
+        student.setStu_createTime(localDateTimeString);
+        student.setStu_isdelete(0);
+        TestPaper testPaper = testPaperDao.findTestPaperByCheckNum(student.getStu_checkNum());
+        System.out.println(testPaper);
+        student.setT_id(testPaper.getT_id());
+        System.out.println(student+"service");
+        int i = examDao.studentRegist(student);
+
+
+        if (i > 0) {
+            student1 = examDao.studentLogin(student.getStu_id());
         }
+
         return student1;
     }
 
@@ -59,24 +66,24 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public boolean saveStuAnswer(StudentAnswer studentAnswer) {
-      //  System.out.println(studentAnswer+"service");
+        //  System.out.println(studentAnswer+"service");
         boolean result = false;
 
         StudentAnswer studentAnswer1 = examDao.findStudentAnswerByTq_id(studentAnswer);
-       // System.out.println(studentAnswer1);
+        // System.out.println(studentAnswer1);
         if (studentAnswer1 != null) {
-          //  System.out.println("111");
+            //  System.out.println("111");
             int i = examDao.updateAnswer(studentAnswer);
             int k = 0;
             int z = 0;
-            result=true;
+            result = true;
             TestQuestionBank testQuestionBank = testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
             if (testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())) {
                 k = examDao.setScore(testQuestionBank.getTq_score(), testQuestionBank.getTq_id());
                 //   System.out.println(k+"k");
             } else {
                 z = examDao.setScore1(testQuestionBank.getTq_id());
-              //  System.out.println(z + "z");
+                //  System.out.println(z + "z");
             }
             if (i > 0 && k > 0 && z > 0) {
                 result = true;
@@ -85,22 +92,22 @@ public class ExamServiceImpl implements ExamService {
             //System.out.println(i+"i");
 
         } else if (studentAnswer1 == null) {
-         //   System.out.println("2222");
+            //   System.out.println("2222");
 
             studentAnswer.setSa_id(UUID.randomUUID().toString());
             int j = examDao.saveAnswer(studentAnswer);
-          //  System.out.println(j+"j");
+            //  System.out.println(j+"j");
             int x = 0;
 
             TestQuestionBank testQuestionBank = testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
             if (testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())) {
                 x = examDao.setScore(testQuestionBank.getTq_score(), testQuestionBank.getTq_id());
-           //     System.out.println(x+"X");
+                //     System.out.println(x+"X");
             }
-            if (j > 0 ) {
+            if (j > 0) {
                 result = true;
             }
-          //  System.out.println(result+"result");
+            //  System.out.println(result+"result");
         }
         return result;
     }
