@@ -10,7 +10,7 @@
     </insert>
 
     <select id="findUser" parameterType="com.tledu.cn.pojo.User" resultType="com.tledu.cn.pojo.User">
-       select * from user where u_phone =#{u_phone} AND u_password =#{u_password} and u_status=0;
+       select * from user where u_phone =#{u_phone} AND u_password =#{u_password} and u_status=0
     </select>
 
 

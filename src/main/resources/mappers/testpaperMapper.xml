@@ -45,6 +45,10 @@
         update testQuestionBank set tq_isdelete = 1 where tq_id = #{tq_id}
     </update>
 
+    <update id="updateTopIcId" parameterType="string">
+        update testQuestionBank set tq_id = #{tq_id1} where tq_id = #{tq_id}
+    </update>
+
     <update id="deleteTopicFromTestPaperByBach" parameterType="string">
         update testQuestionBank set tq_isdelete = 1 where tq_id in
         <foreach collection="list" item="tq_id" open="(" close=")" separator=",">
@@ -68,5 +72,6 @@
     <select id="testAndAnswer" resultType="com.tledu.cn.pojo.TestAndAnswer">
         select  t.*,s.sa_answer,s.sa_score   FROM testQuestionBank t inner join stu_answer s on t.tq_id=s.tq_id where t.t_id= #{t_id} and s.stu_id= #{stu_id}
     </select>
+
 </mapper>
     

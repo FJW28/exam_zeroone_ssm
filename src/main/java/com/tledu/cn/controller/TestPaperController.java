@@ -62,6 +62,7 @@ public class TestPaperController {
         } else {
             result.put("mark", "0");
         }
+        System.out.println(result+"deleteTestPaper");
         return result;
     }
 

@@ -113,7 +113,7 @@ public interface QuestionBankDao {
     public int updateAddStatus(String q_id);
 
     /**
-     * 修改试题的添加状态1
+     * 修改试题的添加状态0
      * @param idList
      * @return
      */

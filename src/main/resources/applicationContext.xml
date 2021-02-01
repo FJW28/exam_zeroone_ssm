@@ -57,7 +57,7 @@
           p:port="${redis.port}"
           p:password="${redis.password}"
           p:pool-config-ref="poolConfig"
-          p:timeout="100000" p:database="0"/>
+          p:timeout="100000" p:database="5"/>
 
 
 

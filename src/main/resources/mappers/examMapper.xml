@@ -17,11 +17,11 @@
     </select>
 
     <select id="selectExam" parameterType="string" resultType="com.tledu.cn.pojo.TestQuestionBank">
-        select * from testQuestionBank where t_id=#{value} and tq_isdelete=0;
+        select * from testQuestionBank where t_id=#{value} and tq_isdelete = 0
     </select>
 
-    <select id="findStudentAnswerByTq_id" parameterType="string" resultType="com.tledu.cn.pojo.StudentAnswer">
-        select * from stu_answer where tq_id = #{value}
+    <select id="findStudentAnswerByTq_id" parameterType="com.tledu.cn.pojo.StudentAnswer" resultType="com.tledu.cn.pojo.StudentAnswer">
+        select * from stu_answer where tq_id = #{tq_id} and stu_id = #{stu_id}
     </select>
 
     <update id="updateAnswer" parameterType="com.tledu.cn.pojo.StudentAnswer">

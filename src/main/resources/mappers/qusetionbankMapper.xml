@@ -9,7 +9,7 @@
     </select>
 
     <select id="findAllQuestionBank1" parameterType="string" resultType="com.tledu.cn.pojo.QuestionBank">
-        select * from questionBank where q_isadd = 0 and q_isdelete = 0 and u_id= #{value} ;
+        select * from questionBank where q_isadd = 0 and q_isdelete = 0 and u_id= #{value}
     </select>
 
 
@@ -82,7 +82,7 @@
     </update>
 
     <update id="updateAddStatusByIdList1" parameterType="string">
-        update questionBank set q_isadd = 1 where q_id in
+        update questionBank set q_isadd = 0 where q_id in
         <foreach collection="list" item="q_id" open="(" close=")" separator=",">
             #{q_id}
         </foreach>

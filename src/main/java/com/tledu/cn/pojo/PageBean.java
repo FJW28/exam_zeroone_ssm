@@ -95,5 +95,16 @@ public class PageBean<T> implements Serializable {
         this.pageNo = pageNo;
     }
 
-
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "list=" + list +
+                ", totalNum=" + totalNum +
+                ", totalPage=" + totalPage +
+                ", currentPage=" + currentPage +
+                ", pageSize=" + pageSize +
+                ", start=" + start +
+                ", pageNo=" + pageNo +
+                '}';
+    }
 }

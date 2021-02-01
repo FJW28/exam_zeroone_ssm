@@ -46,54 +46,61 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public PageBean<TestQuestionBank> selectExam(Integer currentPage, Integer pageSize, String t_id) {
         List<TestQuestionBank> testQuestionBanks = examDao.selectExam(t_id);
+        System.out.println(testQuestionBanks);
+
         PageBean<TestQuestionBank> pageBean = new PageBean<TestQuestionBank>(testQuestionBanks.size(), currentPage, pageSize, 5);
         //判断是否是最后一页,如果最后一页就显示最后一页的几条，不是最后一页就显示pageSize条
-        if(currentPage==pageBean.getTotalPage())
-            pageBean.setList(testQuestionBanks.subList((currentPage-1)*pageSize, testQuestionBanks.size()));
+        if (currentPage == pageBean.getTotalPage())
+            pageBean.setList(testQuestionBanks.subList((currentPage - 1) * pageSize, testQuestionBanks.size()));
         else
-            pageBean.setList(testQuestionBanks.subList((currentPage-1)*pageSize, (currentPage-1)*pageSize+pageSize));
+            pageBean.setList(testQuestionBanks.subList((currentPage - 1) * pageSize, (currentPage - 1) * pageSize + pageSize));
         return pageBean;
     }
 
     @Override
     public boolean saveStuAnswer(StudentAnswer studentAnswer) {
-            boolean result=false;
+      //  System.out.println(studentAnswer+"service");
+        boolean result = false;
 
-        StudentAnswer studentAnswer1=examDao.findStudentAnswerByTq_id(studentAnswer.getTq_id());
-
-        if(studentAnswer1!=null){
-            int i=examDao.updateAnswer(studentAnswer);
-            int k=0;
-            int z=0;
-            TestQuestionBank testQuestionBank=testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
-            if(testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())){
-                 k=examDao.setScore(testQuestionBank.getTq_score(),testQuestionBank.getTq_id());
-             //   System.out.println(k+"k");
-            }else {
+        StudentAnswer studentAnswer1 = examDao.findStudentAnswerByTq_id(studentAnswer);
+       // System.out.println(studentAnswer1);
+        if (studentAnswer1 != null) {
+          //  System.out.println("111");
+            int i = examDao.updateAnswer(studentAnswer);
+            int k = 0;
+            int z = 0;
+            result=true;
+            TestQuestionBank testQuestionBank = testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
+            if (testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())) {
+                k = examDao.setScore(testQuestionBank.getTq_score(), testQuestionBank.getTq_id());
+                //   System.out.println(k+"k");
+            } else {
                 z = examDao.setScore1(testQuestionBank.getTq_id());
-                System.out.println(z+"z");
+              //  System.out.println(z + "z");
             }
-            if(i>0&&k>0&&z>0){
-                result=true;
+            if (i > 0 && k > 0 && z > 0) {
+                result = true;
             }
 
             //System.out.println(i+"i");
 
-        }else if(studentAnswer1==null){
-            studentAnswer.setSa_id(UUID.randomUUID().toString());
-            int j=examDao.saveAnswer(studentAnswer);
-            int x=0;
-            int v=0;
-            TestQuestionBank testQuestionBank=testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
-            if(testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())){
-                 x=examDao.setScore(testQuestionBank.getTq_score(),testQuestionBank.getTq_id());
+        } else if (studentAnswer1 == null) {
+         //   System.out.println("2222");
 
-            }else {
-                v=examDao.setScore1(testQuestionBank.getTq_id());
+            studentAnswer.setSa_id(UUID.randomUUID().toString());
+            int j = examDao.saveAnswer(studentAnswer);
+          //  System.out.println(j+"j");
+            int x = 0;
+
+            TestQuestionBank testQuestionBank = testPaperDao.findTopicByTq_id(studentAnswer.getTq_id());
+            if (testQuestionBank.getTq_answer().equals(studentAnswer.getSa_answer())) {
+                x = examDao.setScore(testQuestionBank.getTq_score(), testQuestionBank.getTq_id());
+           //     System.out.println(x+"X");
             }
-            if(j>0&&x>0&&v>0){
-                result=true;
+            if (j > 0 ) {
+                result = true;
             }
+          //  System.out.println(result+"result");
         }
         return result;
     }
@@ -105,15 +112,15 @@ public class ExamServiceImpl implements ExamService {
         student.setStu_finishTime(time2String);
 
 
-        List<StudentAnswer> studentAnswers=examDao.calculatedScore(student);
-        int score=0;
+        List<StudentAnswer> studentAnswers = examDao.calculatedScore(student);
+        int score = 0;
         for (StudentAnswer studentAnswer : studentAnswers) {
-            score+=studentAnswer.getSa_score();
+            score += studentAnswer.getSa_score();
         }
         student.setStu_score(score);
-        int l=examDao.setFinishTimeandScore(student);
-        System.out.println(l+"l");
-        Student student1=examDao.findStudentById(student);
+        int l = examDao.setFinishTimeandScore(student);
+        System.out.println(l + "l");
+        Student student1 = examDao.findStudentById(student);
         return student1;
     }
 }

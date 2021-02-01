@@ -13,7 +13,7 @@
     </select>
 
     <select id="findAllUser" resultType="com.tledu.cn.pojo.User">
-        select * from user where u_isdelete = 0;
+        select * from user where u_isdelete = 0
     </select>
 
     <update id="openUser" parameterType="string">

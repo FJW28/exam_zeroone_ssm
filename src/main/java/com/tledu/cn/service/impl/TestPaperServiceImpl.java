@@ -10,6 +10,7 @@ import com.tledu.cn.util.JDK8DateUtil;
 import com.tledu.cn.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.ls.LSException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -56,8 +57,20 @@ public class TestPaperServiceImpl implements TestPaperService {
     @Override
     public boolean delTestPaper(String t_id) {
         boolean result = false;
+        List<String> idList=new ArrayList<>();
+        List<TestQuestionBank> allTestQuestionBank = testPaperDao.findAllTestQuestionBank(t_id);
+        int i2=0;
+        for (TestQuestionBank testQuestionBank : allTestQuestionBank) {
+            System.out.println(testQuestionBank);
+            String tq_id1=testQuestionBank.getTq_id()+"111";
+            i2=testPaperDao.updateTopIcId(tq_id1,testQuestionBank.getTq_id());
+            idList.add(testQuestionBank.getTq_id());
+            System.out.println(i2+"i2");
+        }
+        int i1 = questionBankDao.updateAddStatusByIdList1(idList);
+        System.out.println(i1+"i1");
         int i = testPaperDao.delTestPaper(t_id);
-        if(i>0){
+        if(i>0 &&i1>0){
             result=true;
         }
         return result;
@@ -167,8 +180,10 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean deleteTopicFromTestPaper(String tq_id) {
         boolean result=false;
         int i=testPaperDao.deleteTopicFromTestPaper(tq_id);
+        String tq_id1=tq_id+"111";
+        int k=testPaperDao.updateTopIcId(tq_id1,tq_id);
         int j=questionBankDao.updateAddStatus1(tq_id);
-        if(i>0&&j>0){
+        if(i>0&&j>0 && k>0){
             result=true;
         }
         return result;

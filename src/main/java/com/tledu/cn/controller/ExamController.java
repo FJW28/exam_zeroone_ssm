@@ -25,7 +25,8 @@ public class ExamController {
 
 
     /**
-     *考生登录
+     * 考生登录
+     *
      * @param student
      * @return
      */
@@ -33,9 +34,9 @@ public class ExamController {
     @ResponseBody
     public Student stuLogin(@RequestBody Student student) {
         Student student1 = examService.studentRegist(student);
-        if (student1==null){
+        if (student1 == null) {
             return new Student();
-        }else {
+        } else {
             return student1;
         }
 
@@ -43,46 +44,48 @@ public class ExamController {
 
     /**
      * 查询试题
+     *
      * @param t_id
      * @param currentPage
      * @return
      */
     @RequestMapping("/selectExam")
     @ResponseBody
-    public PageBean<TestQuestionBank> selectExam(String t_id,String currentPage){
-      //  System.out.println(t_id);
+    public PageBean<TestQuestionBank> selectExam(String t_id, String currentPage) {
+        //  System.out.println(t_id);
         int currentPage1 = Integer.parseInt(currentPage);
         PageBean<TestQuestionBank> allByPage = examService.selectExam(currentPage1, 1, t_id);
+        System.out.println(allByPage);
         return allByPage;
     }
 
     /**
      * 保存答案
+     *
      * @param //studentAnswer
      */
     @RequestMapping("/saveStuAnswer")
     @ResponseBody
-    public HashMap<String,Object> saveStuAnswer(@RequestBody StudentAnswer studentAnswer){
-       // System.out.println(studentAnswer);
-        HashMap<String,Object> result=new HashMap<String,Object>();
+    public HashMap<String, Object> saveStuAnswer(@RequestBody StudentAnswer studentAnswer) {
+       // System.out.println(studentAnswer+"controller");
+        HashMap<String, Object> result = new HashMap<String, Object>();
 
         boolean flag = examService.saveStuAnswer(studentAnswer);
-        if(flag){
-            result.put("mark","1");
-        }else {
-            result.put("mark","0");
+        if (flag) {
+            result.put("mark", "1");
+        } else {
+            result.put("mark", "0");
         }
-
-
+        System.out.println(result);
         return result;
     }
 
     @RequestMapping("/calculatedScore")
     @ResponseBody
-    public Student calculatedScore(@RequestBody Student student ){
+    public Student calculatedScore(@RequestBody Student student) {
 
         Student student1 = examService.calculatedScore(student);
-       // System.out.println(student1);
+        // System.out.println(student1);
         return student1;
     }
 

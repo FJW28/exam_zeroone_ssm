@@ -41,10 +41,10 @@ public interface ExamDao {
 
     /**
      * 用于保存答案
-     * @param tq_id
+     * @param studentAnswer
      * @return
      */
-    public StudentAnswer findStudentAnswerByTq_id(String tq_id);
+    public StudentAnswer findStudentAnswerByTq_id(StudentAnswer studentAnswer);
 
     /**
      * 修改答案
