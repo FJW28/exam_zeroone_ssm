@@ -55,6 +55,7 @@ public class TestPaperController {
     @ResponseBody
     //删除试卷试卷
     public HashMap<String, Object> delTestPaper(String t_id){
+        //System.out.println(t_id);
         HashMap<String, Object> result = new HashMap<>();
         boolean flag=testPaperService.delTestPaper(t_id);
         if (flag) {
@@ -62,7 +63,7 @@ public class TestPaperController {
         } else {
             result.put("mark", "0");
         }
-        System.out.println(result+"deleteTestPaper");
+       // System.out.println(result+"deleteTestPaper");
         return result;
     }
 
@@ -212,7 +213,7 @@ public class TestPaperController {
     @RequestMapping("/findTestPaperURl")
     @ResponseBody
     public TestPaper findTestPaperURl(String t_id){
-        System.out.println(t_id);
+       // System.out.println(t_id);
 
         return testPaperService.findTestPaperURl(t_id);
     }
@@ -225,7 +226,7 @@ public class TestPaperController {
     @RequestMapping("/queryScore")
     @ResponseBody
     public PageUtils queryScore(@RequestBody Map<String,Object> params){
-        System.out.println(params);
+      //  System.out.println(params);
         PageUtils students=testPaperService.queryScore(params);
         return students;
     }
@@ -239,7 +240,7 @@ public class TestPaperController {
     @RequestMapping("/testAndAnswer")
     @ResponseBody
     public PageUtils testAndAnswer(@RequestBody Map<String,Object> params){
-        System.out.println(params);
+      //  System.out.println(params);
         PageUtils pageUtils=testPaperService.testAndAnswer(params);
        // System.out.println(pageUtils);
         return pageUtils;

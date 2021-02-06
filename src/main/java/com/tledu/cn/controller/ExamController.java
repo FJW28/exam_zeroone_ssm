@@ -33,7 +33,7 @@ public class ExamController {
     @RequestMapping("/stuLogin")
     @ResponseBody
     public Student stuLogin(@RequestBody Student student) {
-        System.out.println(student+"controller");
+        //System.out.println(student+"controller");
         Student student1 = examService.studentRegist(student);
         if (student1 == null) {
             return new Student();

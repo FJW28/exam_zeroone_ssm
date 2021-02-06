@@ -45,7 +45,7 @@ public class TestPaperServiceImpl implements TestPaperService {
         String localDateTimeString = JDK8DateUtil.LocalDateTime2String(now, "yyyy-MM-dd HH:mm:ss");
         testPaper.setT_createTime(localDateTimeString);
         testPaper.setT_checkNum(UUID.randomUUID().toString());
-        testPaper.setT_url("目前未知");
+        testPaper.setT_url("http://localhost:63342/exam_zeroone_front/studentIndex.html?_ijt=q87p997ecdvb597tuma9grv54g");
 
         int i=testPaperDao.addTestPaper(testPaper);
         if(i>0){
@@ -56,19 +56,22 @@ public class TestPaperServiceImpl implements TestPaperService {
 
     @Override
     public boolean delTestPaper(String t_id) {
+
         boolean result = false;
         List<String> idList=new ArrayList<>();
+        //查询出试卷下所有提
         List<TestQuestionBank> allTestQuestionBank = testPaperDao.findAllTestQuestionBank(t_id);
-        int i2=0;
+        //System.out.println(allTestQuestionBank);
+        int i2= 0;
         for (TestQuestionBank testQuestionBank : allTestQuestionBank) {
-            System.out.println(testQuestionBank);
-            String tq_id1=testQuestionBank.getTq_id()+"111";
+          //  System.out.println(testQuestionBank);
+            String tq_id1=testQuestionBank.getTq_id()+UUID.randomUUID().toString();
             i2=testPaperDao.updateTopIcId(tq_id1,testQuestionBank.getTq_id());
             idList.add(testQuestionBank.getTq_id());
-            System.out.println(i2+"i2");
+         //   System.out.println(i2+"i2");
         }
         int i1 = questionBankDao.updateAddStatusByIdList1(idList);
-        System.out.println(i1+"i1");
+       // System.out.println(i1+"i1");
         int i = testPaperDao.delTestPaper(t_id);
         if(i>0 &&i1>0){
             result=true;
@@ -180,7 +183,7 @@ public class TestPaperServiceImpl implements TestPaperService {
     public boolean deleteTopicFromTestPaper(String tq_id) {
         boolean result=false;
         int i=testPaperDao.deleteTopicFromTestPaper(tq_id);
-        String tq_id1=tq_id+"111";
+        String tq_id1=tq_id+UUID.randomUUID().toString();
         int k=testPaperDao.updateTopIcId(tq_id1,tq_id);
         int j=questionBankDao.updateAddStatus1(tq_id);
         if(i>0&&j>0 && k>0){

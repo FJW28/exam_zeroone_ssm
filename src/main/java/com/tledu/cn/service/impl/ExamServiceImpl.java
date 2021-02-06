@@ -37,9 +37,9 @@ public class ExamServiceImpl implements ExamService {
         student.setStu_createTime(localDateTimeString);
         student.setStu_isdelete(0);
         TestPaper testPaper = testPaperDao.findTestPaperByCheckNum(student.getStu_checkNum());
-        System.out.println(testPaper);
+        //System.out.println(testPaper);
         student.setT_id(testPaper.getT_id());
-        System.out.println(student+"service");
+       // System.out.println(student+"service");
         int i = examDao.studentRegist(student);
 
 
@@ -53,7 +53,7 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public PageBean<TestQuestionBank> selectExam(Integer currentPage, Integer pageSize, String t_id) {
         List<TestQuestionBank> testQuestionBanks = examDao.selectExam(t_id);
-        System.out.println(testQuestionBanks);
+        //System.out.println(testQuestionBanks);
 
         PageBean<TestQuestionBank> pageBean = new PageBean<TestQuestionBank>(testQuestionBanks.size(), currentPage, pageSize, 5);
         //判断是否是最后一页,如果最后一页就显示最后一页的几条，不是最后一页就显示pageSize条
@@ -126,7 +126,7 @@ public class ExamServiceImpl implements ExamService {
         }
         student.setStu_score(score);
         int l = examDao.setFinishTimeandScore(student);
-        System.out.println(l + "l");
+       // System.out.println(l + "l");
         Student student1 = examDao.findStudentById(student);
         return student1;
     }
